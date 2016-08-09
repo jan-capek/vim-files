@@ -163,7 +163,7 @@ Plugin 'editorconfig/editorconfig-vim'
 "Plugin 'lornix/vim-scrollbar'
 
 """"" WEBTUNE
-Plugin 'webtune'
+Plugin 'jan-capek/vim-extras'
 
 
 call vundle#end()
