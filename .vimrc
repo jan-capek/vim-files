@@ -5,8 +5,8 @@ set nocompatible               " be iMproved
 filetype off                   " required!
 
 set rtp+=~/.vim/bundle/vundle/
-"call vundle#rc()
-call vundle#begin()
+call vundle#rc()
+"call vundle#begin()
 
 " let Vundle manage Vundle
 Plugin 'gmarik/vundle'
@@ -166,7 +166,7 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'jan-capek/vim-extras'
 
 
-call vundle#end()
+"call vundle#end()
 filetype plugin indent on     " required!
 
 
