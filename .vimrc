@@ -5,8 +5,8 @@ set nocompatible               " be iMproved
 filetype off                   " required!
 
 set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-"call vundle#begin()
+"call vundle#rc()
+call vundle#begin()
 
 " let Vundle manage Vundle
 Plugin 'gmarik/vundle'
@@ -162,11 +162,11 @@ Plugin 'editorconfig/editorconfig-vim'
 """"" SCROLLBAR
 "Plugin 'lornix/vim-scrollbar'
 
-""""" WEBTUNE
+""""" VIM-EXTRAS
 Plugin 'jan-capek/vim-extras'
 
 
-"call vundle#end()
+call vundle#end()
 filetype plugin indent on     " required!
 
 
@@ -453,7 +453,7 @@ set rnu
 set ruler
 set cursorline
 "set cursorcolumn
-set visualbell
+"set visualbell
 set t_vb=
 set mouse=a
 set backspace=indent,eol,start
@@ -469,6 +469,9 @@ set switchbuf=usetab,newtab
 " Windows splits
 set splitright
 set splitbelow
+
+" Diff split
+set diffopt+=vertical
 
 " SWAP & BACKUP
 set noswapfile
@@ -566,6 +569,9 @@ autocmd VimResized * :wincmd =
 " Remove trailing spaces before save
 autocmd FileType php,js,python,ruby,twig,xml,html,yml,css,json autocmd BufWritePre <buffer> :%s/\s\+$//e
 
+" Drupal 7 quirks
+autocmd BufRead,BufNewFile *.module set filetype=php
+autocmd BufRead,BufNewFile *.install set filetype=php
 
 " }}}
 
@@ -593,9 +599,8 @@ if has("gui_running")
         "set guifont=monospace:h14
 
     elseif has("unix")
-        set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h14
-        set lines=999 columns=999        Return
-
+        set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 12
+        set lines=999 columns=999
     endif
 
     set guioptions=egmt
