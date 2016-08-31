@@ -513,19 +513,6 @@ set ignorecase
 set smartcase
 "set title
 
-" Status Line
-"set statusline =[%n]            " Buffer number
-"set statusline+=\ %F            " Path to the file
-"set statusline+=%m              " modified
-"set statusline+=%r              " read only
-"set statusline+=%w              " Preview window flag, text is [Preview]
-"set statusline+=%h              " Help buffer flag, text is [help]
-"set statusline+=%=              " Switch to the right side
-""set statusline+=%{SyntasticStatuslineFlag()}
-""set statusline+=\ %{&ff}/%Y    " filetype
-""set statusline+=\ %{&ff}       " encoding
-"set statusline+=\ %l/%L         " Current line / Total lines
-
 " SYNTASTIC + FUGITIVE
 " https://gist.github.com/eethann/1481911
 
