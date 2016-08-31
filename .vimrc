@@ -123,6 +123,9 @@ Plugin 'vim-scripts/DirDiff.vim'
 """""" FUGITIVE
 Plugin 'tpope/vim-fugitive'
 
+"""""" MERGINAL
+Plugin 'idanarye/vim-merginal'
+
 """""" XML
 Plugin 'sukima/xmledit'
 
@@ -161,6 +164,9 @@ Plugin 'editorconfig/editorconfig-vim'
 
 """"" SCROLLBAR
 "Plugin 'lornix/vim-scrollbar'
+
+""""" VIM SQL WORKBENCH
+"Plugin 'cosminadrianpopescu/vim-sql-workbench'
 
 """"" VIM-EXTRAS
 Plugin 'jan-capek/vim-extras'
@@ -341,24 +347,15 @@ let mapleader = ','
 "let maplocalleader = '\\'
 
 " ECSAPE, SAVE, QUIT
-"imap jk <Esc>
-"imap kj <Esc>
-imap ;; <Esc>
+imap <silent>;; <Esc>
 nmap <silent>; <Esc>:w<CR>
 map  <silent><Esc><Esc> <Esc>:w<CR>
 nmap <silent><Leader>q <Esc>:q<CR>
 
-" BUFFER SWITCHING
+" BUFFER SWITCHING, DELETING
 nmap <silent><Space> :bnext<CR>
 nmap <silent><S-Space> :bprev<CR>
 nmap <silent><Leader>. :call BufferDelete()<CR>
-
-" replace without yanking in visial mode
-vmap r "_dp
-
-" EASYMOTION
-map <silent><Leader><Space> <Plug>(easymotion-s)
-"map <silent><Leader>, <Plug>(easymotion-s)
 
 " BUFFER SWITCHING (leader #)
 nmap <silent><leader>1 <Plug>AirlineSelectTab1
@@ -371,6 +368,12 @@ nmap <silent><leader>7 <Plug>AirlineSelectTab7
 nmap <silent><leader>8 <Plug>AirlineSelectTab8
 nmap <silent><leader>9 <Plug>AirlineSelectTab9
 
+" replace without yanking in visial mode
+vmap r "_dp
+
+" EASYMOTION
+map <silent><Leader><Space> <Plug>(easymotion-s)
+"map <silent><Leader>, <Plug>(easymotion-s)
 
 " insert new line
 imap <S-CR> <Esc>O
@@ -385,48 +388,42 @@ nmap <silent><Leader>v <Esc>:vs<CR>
 nmap <silent><Leader>h <Esc>:sp<CR>
 
 " diff this, cancel all
-nmap <Leader>= :diffthis<CR><C-W>w:diffthis<CR>
-nmap <Leader>- :diffoff!<CR>
+nmap <silent><Leader>= :diffthis<CR><C-W>w:diffthis<CR>
+nmap <silent><Leader>- :diffoff!<CR>
 
 " pretty xml
-nmap <Leader>x :PrettyXML<CR>
-
-" CTRLP
-"nmap <silent><Leader>/ :CtrlPMRU<CR>
-"nmap <silent><Leader>b :CtrlPBuffer<CR>
+nmap <silent><Leader>x :PrettyXML<CR>
 
 " UNITE
-nmap <leader>; :<C-u>Unite -no-split -buffer-name=mru -start-insert file_mru<cr>
-nnoremap <leader>/ :<C-u>Unite -no-split -buffer-name=files -start-insert file<cr>
-
-" VIMFILER
-nmap <silent><Leader>? :VimFiler<CR>
+nmap <silent><leader>; :<C-u>Unite -no-split -buffer-name=mru -start-insert file_mru<cr>
+nmap <silent><leader>/ :<C-u>Unite -no-split -buffer-name=files -start-insert file<cr>
+"nnoremap <leader>/ :<C-u>Unite -no-split -buffer-name=files -start-insert file<cr>
 
 " NERDTree & NetRw
 nmap <silent><Leader><TAB> :NERDTreeToggle<CR>
-"nmap <Leader>E :e sftp:////<Left><Left>
 
-" Tagbar
-nmap <silent><Leader>\ <Esc>:TagbarToggle<CR>
+" VIMFILER
+nmap <silent><Leader>f :VimFiler<CR>
+
+" FUGITIVE GIT
+nmap <silent><Leader>s :Gstatus<CR>
+
+" MERGINAL
+nmap <silent><Leader>b :MerginalToggle<CR>
+
+" TAGBAR
+nmap <silent><Leader>t <Esc>:TagbarToggle<CR>
 
 " Wrap
-"nmap <silent><Leader><CR> <Esc>:set wrap!<CR>
 nmap <silent><Leader><CR> <Esc>:call ToggleWrap()<CR>
 
 " Absolute / Relative Line Numbers
 nmap <silent><Leader>` <Esc>:call g:ToggleNuMode()<CR>
 
-" html - php - css - js switching
-nmap <Leader>th <Esc>:set filetype=html<CR>
-nmap <Leader>tp <Esc>:set filetype=php<CR>
-nmap <Leader>tc <Esc>:set filetype=css<CR>
-nmap <Leader>tj <Esc>:set filetype=js<CR>
-nmap <Leader>tn <Esc>:set filetype=nginx<CR>
-imap <C-Space> <C-x><C-o>
-
 " Password Generator
-nmap <Leader>p <Esc>:r!pwgen -ABn 8 1<CR>
+nmap <silent><Leader>p <Esc>:r!pwgen -ABn 8 1<CR>
 
+" VIM COMMANDER
 noremap <silent><F11> :cal VimCommanderToggle()<CR>
 
 
