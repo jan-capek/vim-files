@@ -317,7 +317,7 @@ endif
 "highlight Scrollbar_Thumb ctermfg=green ctermbg=grey guifg=green guibg=grey cterm=reverse
 
 " CONQUETERM
-let g:ConqueTerm_Color = 1
+"let g:ConqueTerm_Color = 1
 
 
 " VDEBUG
@@ -326,11 +326,11 @@ let g:vdebug_options['server'] = "localhost"
 let g:vdebug_options['port'] = 9999
 let g:vdebug_options["ide_key"] = "VDEBUG"
 let g:vdebug_options["break_on_open"] = 0
-let g:vdebug_options['timeout'] = 60
+"let g:vdebug_options['timeout'] = 60
 let g:vdebug_options["watch_window_style"] = "compact"
 let g:vdebug_options["debug_window_level"] = 2
 "let g:vdebug_options["continuous_mode"] = 1
-let g:vdebug_options['path_maps'] = { "/home/mmdelivery/www": "/Users/hans/Remotes/ran-mmdelivery/www" }
+"let g:vdebug_options['path_maps'] = { "/home/mmdelivery/www": "/Users/hans/Remotes/ran-mmdelivery/www" }
 
 let g:vdebug_features = {}
 let g:vdebug_features['max_depth'] = 2048
@@ -380,7 +380,7 @@ imap <S-CR> <Esc>O
 nmap <S-CR> O<Esc>
 nmap <CR> o<Esc>
 
-" TAB window switching
+" window switching
 nmap <Tab> <C-W>w
 
 " split windows
@@ -424,7 +424,7 @@ nmap <silent><Leader>` <Esc>:call g:ToggleNuMode()<CR>
 nmap <silent><Leader>p <Esc>:r!pwgen -ABn 8 1<CR>
 
 " VIM COMMANDER
-noremap <silent><F11> :cal VimCommanderToggle()<CR>
+"noremap <silent><F11> :cal VimCommanderToggle()<CR>
 
 
 " }}}
