@@ -120,11 +120,14 @@ Plugin 'ivanov/vim-ipython'
 """""" DIRDIFF
 Plugin 'vim-scripts/DirDiff.vim'
 
-"""""" FUGITIVE
+"""""" FUGITIVE (GIT)
 Plugin 'tpope/vim-fugitive'
 
 """""" MERGINAL
 Plugin 'idanarye/vim-merginal'
+
+"""""" GITGUTTER
+Plugin 'airblade/vim-gitgutter'
 
 """""" XML
 Plugin 'sukima/xmledit'
@@ -141,7 +144,7 @@ Plugin 'm2mdas/phpcomplete-extended-symfony'
 Plugin 'm2mdas/phpcomplete-extended-laravel'
 
 """""" VDEBUG (python)
-Plugin 'joonty/vdebug'
+"Plugin 'joonty/vdebug'
 " https://www.youtube.com/watch?v=5mtY5HQeVaw
 
 """""" EDITORCONFIG
@@ -280,7 +283,8 @@ let g:jedi#show_call_signatures = 1
 " NEOCOMPLETE
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#sources#syntax#auto_completion_start_length = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 1
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 " JEDI-NEOCOMPLETE integration
 "if !exists('g:neocomplete#force_omni_input_patterns')
@@ -308,6 +312,11 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
+
+" PHPCOMPLETE
+let g:phpcomplete_index_composer_command = 'composer'
+
+
 
 " SCROLLBAR
 "let g:loaded_scrollbar=1
@@ -353,8 +362,10 @@ map  <silent><Esc><Esc> <Esc>:w<CR>
 nmap <silent><Leader>q <Esc>:q<CR>
 
 " BUFFER SWITCHING, DELETING
-nmap <silent><Space> :bnext<CR>
-nmap <silent><S-Space> :bprev<CR>
+"nmap <silent><Space> :bnext<CR>
+"nmap <silent><S-Space> :bprev<CR>
+nmap <silent>\ :bnext<CR>
+nmap <silent>\| :bprev<CR>
 nmap <silent><Leader>. :call BufferDelete()<CR>
 
 " BUFFER SWITCHING (leader #)
@@ -372,7 +383,8 @@ nmap <silent><leader>9 <Plug>AirlineSelectTab9
 vmap r "_dp
 
 " EASYMOTION
-map <silent><Leader><Space> <Plug>(easymotion-s)
+"map <silent><Leader><Space> <Plug>(easymotion-s)
+map <silent><Space> <Plug>(easymotion-s)
 "map <silent><Leader>, <Plug>(easymotion-s)
 
 " insert new line
@@ -537,7 +549,7 @@ set completeopt=longest,menuone
 
 " Folding
 autocmd FileType javascript     setlocal foldmethod=syntax
-autocmd FileType php            setlocal foldmethod=syntax
+autocmd FileType php            setlocal foldmethod=manual
 autocmd FileType python         setlocal foldmethod=indent
 autocmd FileType xml            setlocal foldmethod=syntax
 set foldlevelstart=1
@@ -554,8 +566,9 @@ autocmd VimResized * :wincmd =
 autocmd FileType php,js,python,ruby,twig,xml,html,yml,css,json autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " Drupal 7 quirks
-autocmd BufRead,BufNewFile *.module set filetype=php
 autocmd BufRead,BufNewFile *.install set filetype=php
+autocmd BufRead,BufNewFile *.module set filetype=php
+autocmd BufRead,BufNewFile *.inc set filetype=php
 
 " }}}
 
@@ -583,7 +596,7 @@ if has("gui_running")
         "set guifont=monospace:h14
 
     elseif has("unix")
-        set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 12
+        set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 11
         set lines=999 columns=999
     endif
 
