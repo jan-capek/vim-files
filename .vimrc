@@ -60,7 +60,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
 """""" AUTO-PAIRS / DELIMITMATE
-Plugin 'jiangmiao/auto-pairs'
+"Plugin 'jiangmiao/auto-pairs'
 "Plugin 'Raimondi/delimitMate'
 
 """""" NERDCOMMENTER
@@ -298,20 +298,16 @@ let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 " Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
+"imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"xmap <C-k>     <Plug>(neosnippet_expand_target)
 " SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<TAB>"
+"imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+"smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 " For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
+"if has('conceal')
+  "set conceallevel=2 concealcursor=i
+"endif
 
 " PHPCOMPLETE
 let g:phpcomplete_index_composer_command = 'composer'
@@ -444,9 +440,7 @@ nmap <silent><Leader>p <Esc>:r!pwgen -ABn 8 1<CR>
 " GENERAL SETTING
 " {{{
 
-"colorscheme tir_black
-"colorscheme dracula
-colorscheme molokai
+set nocompatible
 set background=dark
 set encoding=utf-8
 set termencoding=utf-8
@@ -454,19 +448,21 @@ set t_Co=256
 set term=xterm-256color
 set history=1000
 set fileformat=unix
-set nocompatible
 set laststatus=2
 set hidden
 set nu
 set rnu
 set ruler
 set cursorline
-"set cursorcolumn
-"set visualbell
+set novb
+set noeb
 set t_vb=
 set mouse=a
 set backspace=indent,eol,start
 set cm=blowfish2
+"colorscheme tir_black
+"colorscheme dracula
+colorscheme molokai
 
 " Tabs
 set showtabline=1
@@ -504,7 +500,7 @@ endif
 
 " Wrapping, Scrolling
 set nowrap
-set scrolloff=8
+set scrolloff=16
 set sidescrolloff=32
 set sidescroll=1
 
@@ -594,9 +590,8 @@ if has("gui_running")
         "set guifont=Inconsolata:h14
         "set guifont=Monaco:h14
         "set guifont=monospace:h14
-
     elseif has("unix")
-        set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 11
+        set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 13.4
         set lines=999 columns=999
     endif
 
