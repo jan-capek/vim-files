@@ -5,7 +5,6 @@ set nocompatible               " be iMproved
 filetype off                   " required!
 
 set rtp+=~/.vim/bundle/vundle/
-"call vundle#rc()
 call vundle#begin()
 
 " let Vundle manage Vundle
@@ -194,7 +193,7 @@ let g:syntastic_auto_jump = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
 let g:syntastic_python_checkers=['pylint']
-let g:syntastic_python_pylint_post_args='--disable=C0301,C0111,C0103,R0913,R0914'
+let g:syntastic_python_pylint_post_args='--disable=C0301,C0302,C0111,C0103,R0913,R0914'
 let g:syntastic_javascript_checkers=['jshint']
 
 " PHP - settings
@@ -354,7 +353,7 @@ let mapleader = ','
 " ECSAPE, SAVE, QUIT
 imap <silent>;; <Esc>
 nmap <silent>; <Esc>:w<CR>
-map  <silent><Esc><Esc> <Esc>:w<CR>
+"map  <silent><Esc><Esc> <Esc>:w<CR>
 nmap <silent><Leader>q <Esc>:q<CR>
 
 " BUFFER SWITCHING, DELETING
