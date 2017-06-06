@@ -65,8 +65,9 @@ Plugin 'vim-airline/vim-airline-themes'
 """""" NERDCOMMENTER
 Plugin 'scrooloose/nerdcommenter'
 
-"""""" MATCHIT
+"""""" MATCHIT / MatchTag
 Plugin 'vim-scripts/matchit.zip'
+Plugin 'gregsexton/MatchTag'
 
 """""" EASYMOTION
 Plugin 'Lokaltog/vim-easymotion'
@@ -270,7 +271,7 @@ let g:airline#extensions#tabline#buffer_idx_mode = 1
 "let g:lesscss_on = 0
 
 " JEDI-VIM
-let g:jedi#completions_enabled = 0
+let g:jedi#completions_enabled = 1
 let g:jedi#auto_initialization = 1
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#use_tabs_not_buffers = 1
@@ -297,9 +298,9 @@ let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 " Plugin key-mappings.
-"imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-"smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-"xmap <C-k>     <Plug>(neosnippet_expand_target)
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
 " SuperTab like snippets behavior.
 "imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
 "smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
@@ -546,6 +547,7 @@ set completeopt=longest,menuone
 autocmd FileType javascript     setlocal foldmethod=syntax
 autocmd FileType php            setlocal foldmethod=manual
 autocmd FileType python         setlocal foldmethod=indent
+autocmd FileType html           setlocal foldmethod=manual
 autocmd FileType xml            setlocal foldmethod=syntax
 set foldlevelstart=1
 set foldnestmax=1
@@ -618,7 +620,7 @@ if has("gui_running")
 
 else
 
-    let g:airline_powerline_fonts = 0
+    let g:airline_powerline_fonts = 1
     let g:NERDTreeDirArrows = 0
 
 endif
