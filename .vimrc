@@ -44,6 +44,9 @@ Plugin 'tpope/vim-haml'
 """""" CTRL-SPACE
 "Plugin 'szw/vim-ctrlspace'
 
+"""""" FASTFOLD
+Plugin 'Konfekt/FastFold'
+
 """""" NERDTREE
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-scripts/Toggle-NERDTree-width'
@@ -270,28 +273,32 @@ let g:airline#extensions#tabline#buffer_idx_mode = 1
 "let g:lesscss_toggle_key = '<Leader>.'
 "let g:lesscss_on = 0
 
-" JEDI-VIM
-let g:jedi#completions_enabled = 1
-let g:jedi#auto_initialization = 1
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#use_tabs_not_buffers = 1
-let g:jedi#use_splits_not_buffers = "bottom"
-let g:jedi#popup_on_dot = 1
-let g:jedi#popup_select_first = 1
-let g:jedi#show_call_signatures = 1
-
 " NEOCOMPLETE
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#sources#syntax#auto_completion_start_length = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 1
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
 " JEDI-NEOCOMPLETE integration
-"if !exists('g:neocomplete#force_omni_input_patterns')
-    "let g:neocomplete#force_omni_input_patterns = {}
-"endif
-"let g:neocomplete#force_omni_input_patterns.python =
-"\ '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+let g:jedi#completions_enabled = 0
+"let g:jedi#auto_initialization = 0
+let g:jedi#auto_vim_configuration = 0
+"let g:jedi#use_tabs_not_buffers = 1
+"let g:jedi#use_splits_not_buffers = "bottom"
+"let g:jedi#popup_on_dot = 1
+"let g:jedi#popup_select_first = 1
+let g:jedi#show_call_signatures = 1
+"let g:jedi#smart_auto_mappings = 0
+if has('python3')
+    let g:jedi#force_py_version = 3
+endif
+if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_omni_input_patterns.python =
+\ '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+" alternative pattern: '\h\w*\|[^. \t]\.\w*'
 
 " NEOSNIPPET
 "let g:neosnippet#disable_runtime_snippets = { 'python':1 }
@@ -343,6 +350,7 @@ let g:vdebug_features['max_children'] = 2048
 
 
 " }}}
+
 
 " KEYS MAPPING
 " {{{
@@ -545,7 +553,7 @@ set completeopt=longest,menuone
 
 " Folding
 autocmd FileType javascript     setlocal foldmethod=syntax
-autocmd FileType php            setlocal foldmethod=manual
+autocmd FileType php            setlocal foldmethod=syntax
 autocmd FileType python         setlocal foldmethod=indent
 autocmd FileType html           setlocal foldmethod=manual
 autocmd FileType xml            setlocal foldmethod=syntax
