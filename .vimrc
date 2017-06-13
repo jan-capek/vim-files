@@ -1,187 +1,212 @@
 " PLUGINS
 " {{{
 
-set nocompatible               " be iMproved
-filetype off                   " required!
+" Note: Skip initialization for vim-tiny or vim-small.
+if 0 | endif
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#begin()
+if &compatible
+    set nocompatible               " Be iMproved
+endif
 
-" let Vundle manage Vundle
-Plugin 'gmarik/vundle'
-" try neobundle
+" Required:
+set runtimepath+=~/.vim/bundle/neobundle.vim/
+
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+let g:make = 'gmake'
+if system('uname -o') =~ '^GNU/'
+        let g:make = 'make'
+endif
+
+" My Bundles here:
+" Refer to |:NeoBundle-examples|.
+" Note: You don't set neobundle setting in .gvimrc!
 
 """""" EDITORCONFIG
-Plugin 'editorconfig/editorconfig-vim'
+NeoBundle 'editorconfig/editorconfig-vim'
 
 """""" COLORS
-"Plugin 'vim-scripts/tir_black'
-Plugin 'tomasr/molokai'
-"Plugin 'zenorocha/dracula-theme'
+"NeoBundle 'vim-scripts/tir_black'
+NeoBundle 'tomasr/molokai'
+"NeoBundle 'zenorocha/dracula-theme'
 " northland
-"Plugin 'Colour_Sampler_Pack'
-"Plugin 'flazz/vim-colorschemes'
-"Plugin 'vim-scripts/ScrollColors'
+"NeoBundle 'Colour_Sampler_Pack'
+"NeoBundle 'flazz/vim-colorschemes'
+"NeoBundle 'vim-scripts/ScrollColors'
 
 """""" SYNTAX (nginx, markdown)
-Plugin 'evanmiller/nginx-vim-syntax'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'elzr/vim-json'
+NeoBundle 'evanmiller/nginx-vim-syntax'
+NeoBundle 'plasticboy/vim-markdown'
+NeoBundle 'elzr/vim-json'
 
 """""" CSS3, LESS
-Plugin 'hail2u/vim-css3-syntax'
-Plugin 'skammer/vim-css-color'
+NeoBundle 'hail2u/vim-css3-syntax'
+NeoBundle 'skammer/vim-css-color'
 " use new Colorizer
-"Plugin 'chrisbra/Colorizer'
-"Plugin 'groenewege/vim-less'
-"Plugin 'vitalk/vim-lesscss'
+"NeoBundle 'chrisbra/Colorizer'
+"NeoBundle 'groenewege/vim-less'
+"NeoBundle 'vitalk/vim-lesscss'
 
 """""" SASS, COMPASS, HAML
-Plugin 'tpope/vim-haml'
+NeoBundle 'tpope/vim-haml'
 
 """""" CTRLP
-"Plugin 'kien/ctrlp.vim'
+"NeoBundle 'kien/ctrlp.vim'
 " replace with
-"Plugin 'ctrlpvim/ctrlp.vim'
+"NeoBundle 'ctrlpvim/ctrlp.vim'
 
 """""" CTRL-SPACE
-"Plugin 'szw/vim-ctrlspace'
+"NeoBundle 'szw/vim-ctrlspace'
 
 """""" VIMPROC
-Plugin 'Shougo/vimproc.vim'
+NeoBundle 'Shougo/vimproc.vim'
 
 """""" FASTFOLD
-Plugin 'Konfekt/FastFold'
+NeoBundle 'Konfekt/FastFold'
 
 """""" NERDTREE
-Plugin 'scrooloose/nerdtree'
-Plugin 'vim-scripts/Toggle-NERDTree-width'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'vim-scripts/Toggle-NERDTree-width'
 
 """""" TAGBAR
-Plugin 'majutsushi/tagbar'
+NeoBundle 'majutsushi/tagbar'
 
 """""" POWERLINE FONTS
-Plugin 'Lokaltog/powerline-fonts'
+NeoBundle 'Lokaltog/powerline-fonts'
 
 """""" AIRLINE
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+NeoBundle 'vim-airline/vim-airline'
+NeoBundle 'vim-airline/vim-airline-themes'
 
 """""" AUTO-PAIRS / DELIMITMATE
-"Plugin 'jiangmiao/auto-pairs'
-"Plugin 'Raimondi/delimitMate'
+"NeoBundle 'jiangmiao/auto-pairs'
+"NeoBundle 'Raimondi/delimitMate'
 
 """""" NERDCOMMENTER
-Plugin 'scrooloose/nerdcommenter'
+NeoBundle 'scrooloose/nerdcommenter'
 
 """""" MATCHIT / MatchTag
-Plugin 'vim-scripts/matchit.zip'
-Plugin 'gregsexton/MatchTag'
+NeoBundle 'vim-scripts/matchit.zip'
+NeoBundle 'gregsexton/MatchTag'
 
 """""" EASYMOTION
-Plugin 'Lokaltog/vim-easymotion'
+NeoBundle 'Lokaltog/vim-easymotion'
 
 """""" UNITE
-Plugin 'Shougo/unite.vim'
-Plugin 'Shougo/neomru.vim'
-Plugin 'Shougo/neossh.vim'
-Plugin 'Shougo/vimfiler.vim'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'Shougo/neossh.vim'
+NeoBundle 'Shougo/vimfiler.vim'
 
 """""" VIMSHELL
-Plugin 'Shougo/vimshell.vim'
-"Plugin 'oplatek/Conque-Shell'
+NeoBundle 'Shougo/vimshell.vim'
+"NeoBundle 'oplatek/Conque-Shell'
 
 """""" NEOCOMPLETE (lua)
-Plugin 'Shougo/neocomplete.vim'
+NeoBundle 'Shougo/neocomplete.vim'
 
 """""" NEOSNIPPET
-Plugin 'Shougo/neosnippet.vim'
-Plugin 'Shougo/neosnippet-snippets'
+NeoBundle 'Shougo/neosnippet.vim'
+NeoBundle 'Shougo/neosnippet-snippets'
 
 """""" ULTISNIP (python)
-"Plugin 'MarcWeber/UltiSnips'
+"NeoBundle 'MarcWeber/UltiSnips'
 
 """""" SNIPPETS
-Plugin 'scrooloose/snipmate-snippets'
-Plugin 'honza/vim-snippets'
+NeoBundle 'scrooloose/snipmate-snippets'
+NeoBundle 'honza/vim-snippets'
 
 """""" YOUCOMPLETEME
-"Plugin 'Valloric/YouCompleteMe'
+"NeoBundle 'Valloric/YouCompleteMe'
 
 """""" EMMET (ZEN CODING)
-Plugin 'mattn/emmet-vim'
+NeoBundle 'mattn/emmet-vim'
 
 """""" SPARKUP
-"Plugin 'tristen/vim-sparkup'
+"NeoBundle 'tristen/vim-sparkup'
 
 """""" SYNTASTIC
-Plugin 'scrooloose/syntastic'
+NeoBundle 'scrooloose/syntastic'
 
 """""" JEDI-VIM (python)
-Plugin 'davidhalter/jedi-vim'
+NeoBundle 'davidhalter/jedi-vim'
 
 """""" IPYTHON
-Plugin 'ivanov/vim-ipython'
+NeoBundle 'ivanov/vim-ipython'
 
 """""" PYINTERACTIVE
-"Plugin 'clericJ/pyinteractive-vim'
+"NeoBundle 'clericJ/pyinteractive-vim'
 
 """""" DIRDIFF
-Plugin 'vim-scripts/DirDiff.vim'
+NeoBundle 'vim-scripts/DirDiff.vim'
 
 """""" FUGITIVE (GIT)
-Plugin 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-fugitive'
 
 """""" MERGINAL
-Plugin 'idanarye/vim-merginal'
+NeoBundle 'idanarye/vim-merginal'
 
 """""" GITGUTTER
-Plugin 'airblade/vim-gitgutter'
+NeoBundle 'airblade/vim-gitgutter'
 
 """""" XML
-Plugin 'sukima/xmledit'
+NeoBundle 'sukima/xmledit'
 
 """""" PHP
-"Plugin 'shawncplus/phpcomplete.vim'
-"Plugin 'spf13/PIV'
-Plugin 'xsbeats/vim-blade'
-Plugin 'markwu/vim-laravel4-snippets'
+"NeoBundle 'shawncplus/phpcomplete.vim'
+"NeoBundle 'spf13/PIV'
+NeoBundle 'xsbeats/vim-blade'
+NeoBundle 'markwu/vim-laravel4-snippets'
 
-Plugin 'm2mdas/phpcomplete-extended'
-Plugin 'm2mdas/phpcomplete-extended-symfony'
-Plugin 'm2mdas/phpcomplete-extended-laravel'
+NeoBundle 'm2mdas/phpcomplete-extended'
+NeoBundle 'm2mdas/phpcomplete-extended-symfony'
+NeoBundle 'm2mdas/phpcomplete-extended-laravel'
 
 """""" VDEBUG (python)
-"Plugin 'joonty/vdebug'
+"NeoBundle 'joonty/vdebug'
 " https://www.youtube.com/watch?v=5mtY5HQeVaw
 
 """""" MINIMAP
-"Plugin 'severin-lemaignan/vim-minimap'
+"NeoBundle 'severin-lemaignan/vim-minimap'
 
 """""" VIMEXPLORER
-"Plugin 'mbbill/VimExplorer'
+"NeoBundle 'mbbill/VimExplorer'
 
 """""" VIMCOMMANDER
-"Plugin 'vim-scripts/vimcommander'
+"NeoBundle 'vim-scripts/vimcommander'
 
 """""" VIMOUTLINER
-"Plugin 'vimoutliner/vimoutliner'
+"NeoBundle 'vimoutliner/vimoutliner'
 
 """""" CALENDAR
-"Plugin 'calendar%52'
+"NeoBundle 'calendar%52'
 
 """"" SCROLLBAR
-"Plugin 'lornix/vim-scrollbar'
+"NeoBundle 'lornix/vim-scrollbar'
 
 """"" VIM SQL WORKBENCH
-"Plugin 'cosminadrianpopescu/vim-sql-workbench'
+"NeoBundle 'cosminadrianpopescu/vim-sql-workbench'
 
 """"" VIM-EXTRAS
-Plugin 'jan-capek/vim-extras'
+NeoBundle 'jan-capek/vim-extras'
 
 
-call vundle#end()
-filetype plugin indent on     " required!
+
+
+call neobundle#end()
+
+" Required:
+filetype plugin indent on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
+
 
 
 " }}}
