@@ -11,6 +11,9 @@ call vundle#begin()
 Plugin 'gmarik/vundle'
 " try neobundle
 
+"""""" EDITORCONFIG
+Plugin 'editorconfig/editorconfig-vim'
+
 """""" COLORS
 "Plugin 'vim-scripts/tir_black'
 Plugin 'tomasr/molokai'
@@ -43,6 +46,9 @@ Plugin 'tpope/vim-haml'
 
 """""" CTRL-SPACE
 "Plugin 'szw/vim-ctrlspace'
+
+"""""" VIMPROC
+Plugin 'Shougo/vimproc.vim'
 
 """""" FASTFOLD
 Plugin 'Konfekt/FastFold'
@@ -141,7 +147,6 @@ Plugin 'sukima/xmledit'
 Plugin 'xsbeats/vim-blade'
 Plugin 'markwu/vim-laravel4-snippets'
 
-Plugin 'Shougo/vimproc.vim'
 Plugin 'm2mdas/phpcomplete-extended'
 Plugin 'm2mdas/phpcomplete-extended-symfony'
 Plugin 'm2mdas/phpcomplete-extended-laravel'
@@ -149,9 +154,6 @@ Plugin 'm2mdas/phpcomplete-extended-laravel'
 """""" VDEBUG (python)
 "Plugin 'joonty/vdebug'
 " https://www.youtube.com/watch?v=5mtY5HQeVaw
-
-"""""" EDITORCONFIG
-Plugin 'editorconfig/editorconfig-vim'
 
 """""" MINIMAP
 "Plugin 'severin-lemaignan/vim-minimap'
@@ -548,6 +550,9 @@ autocmd FileType css            setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType xml            setlocal omnifunc=xmlcomplete#CompleteTags
 "autocmd FileType php            setlocal omnifunc=phpcomplete#CompletePHP
 autocmd FileType php            setlocal omnifunc=phpcomplete_extended#CompletePHP
+"autocmd FileType install            setlocal omnifunc=phpcomplete_extended#CompletePHP
+"autocmd FileType module            setlocal omnifunc=phpcomplete_extended#CompletePHP
+"autocmd FileType inc            setlocal omnifunc=phpcomplete_extended#CompletePHP
 autocmd FileType ruby           setlocal omnifunc=rubycomplete#CompleteRuby
 set completeopt=longest,menuone
 
