@@ -27,6 +27,17 @@ endif
 " Refer to |:NeoBundle-examples|.
 " Note: You don't set neobundle setting in .gvimrc!
 
+"""""" VIMPROC
+NeoBundle 'Shougo/vimproc.vim' , {
+\ 'build' : {
+\     'windows' : 'tools\\update-dll-mingw',
+\     'cygwin' : 'make -f make_cygwin.mak',
+\     'mac' : 'make',
+\     'linux' : 'make',
+\     'unix' : 'gmake',
+\    },
+\ }
+
 """""" EDITORCONFIG
 NeoBundle 'editorconfig/editorconfig-vim'
 
@@ -62,9 +73,6 @@ NeoBundle 'tpope/vim-haml'
 
 """""" CTRL-SPACE
 "NeoBundle 'szw/vim-ctrlspace'
-
-"""""" VIMPROC
-NeoBundle 'Shougo/vimproc.vim'
 
 """""" FASTFOLD
 NeoBundle 'Konfekt/FastFold'
