@@ -18,6 +18,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 " Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
 
+" Set platform specific make command
 let g:make = 'gmake'
 if system('uname -o') =~ '^GNU/'
         let g:make = 'make'
@@ -45,7 +46,7 @@ NeoBundle 'editorconfig/editorconfig-vim'
 "NeoBundle 'vim-scripts/tir_black'
 NeoBundle 'tomasr/molokai'
 "NeoBundle 'zenorocha/dracula-theme'
-" northland
+"NeoBundle 'vim-scripts/northland.vim'
 "NeoBundle 'Colour_Sampler_Pack'
 "NeoBundle 'flazz/vim-colorschemes'
 "NeoBundle 'vim-scripts/ScrollColors'
@@ -67,8 +68,6 @@ NeoBundle 'skammer/vim-css-color'
 NeoBundle 'tpope/vim-haml'
 
 """""" CTRLP
-"NeoBundle 'kien/ctrlp.vim'
-" replace with
 "NeoBundle 'ctrlpvim/ctrlp.vim'
 
 """""" CTRL-SPACE
@@ -81,6 +80,9 @@ NeoBundle 'Konfekt/FastFold'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'vim-scripts/Toggle-NERDTree-width'
 
+"""""" NERDCOMMENTER
+NeoBundle 'scrooloose/nerdcommenter'
+
 """""" TAGBAR
 NeoBundle 'majutsushi/tagbar'
 
@@ -91,12 +93,8 @@ NeoBundle 'Lokaltog/powerline-fonts'
 NeoBundle 'vim-airline/vim-airline'
 NeoBundle 'vim-airline/vim-airline-themes'
 
-"""""" AUTO-PAIRS / DELIMITMATE
-"NeoBundle 'jiangmiao/auto-pairs'
-"NeoBundle 'Raimondi/delimitMate'
-
-"""""" NERDCOMMENTER
-NeoBundle 'scrooloose/nerdcommenter'
+"""""" AUTO-PAIRS
+NeoBundle 'jiangmiao/auto-pairs'
 
 """""" MATCHIT / MatchTag
 NeoBundle 'vim-scripts/matchit.zip'
@@ -194,16 +192,11 @@ NeoBundle 'm2mdas/phpcomplete-extended-laravel'
 """""" CALENDAR
 "NeoBundle 'calendar%52'
 
-""""" SCROLLBAR
-"NeoBundle 'lornix/vim-scrollbar'
-
 """"" VIM SQL WORKBENCH
 "NeoBundle 'cosminadrianpopescu/vim-sql-workbench'
 
 """"" VIM-EXTRAS
 NeoBundle 'jan-capek/vim-extras'
-
-
 
 
 call neobundle#end()
@@ -353,15 +346,6 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " PHPCOMPLETE
 let g:phpcomplete_index_composer_command = 'composer'
-
-
-
-" SCROLLBAR
-"let g:loaded_scrollbar=1
-"let g:scrollbar_thumb='|'
-"let g:scrollbar_clear=' '
-"highlight Scrollbar_Clear ctermfg=grey ctermbg=grey guifg=grey guibg=grey cterm=none
-"highlight Scrollbar_Thumb ctermfg=green ctermbg=grey guifg=green guibg=grey cterm=reverse
 
 " CONQUETERM
 "let g:ConqueTerm_Color = 1
@@ -564,9 +548,6 @@ set ignorecase
 set smartcase
 "set title
 
-" SYNTASTIC + FUGITIVE
-" https://gist.github.com/eethann/1481911
-
 " Syntax
 syntax   on
 filetype on
@@ -574,18 +555,13 @@ filetype plugin on
 filetype indent on
 
 " OmniComplete
-"autocmd FileType python         setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType python         setlocal omnifunc=jedi#completions
-"autocmd FileType python         NeoCompleteLock
 autocmd FileType javascript     setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html,markdown  setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css            setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType xml            setlocal omnifunc=xmlcomplete#CompleteTags
 "autocmd FileType php            setlocal omnifunc=phpcomplete#CompletePHP
 autocmd FileType php            setlocal omnifunc=phpcomplete_extended#CompletePHP
-"autocmd FileType install            setlocal omnifunc=phpcomplete_extended#CompletePHP
-"autocmd FileType module            setlocal omnifunc=phpcomplete_extended#CompletePHP
-"autocmd FileType inc            setlocal omnifunc=phpcomplete_extended#CompletePHP
 autocmd FileType ruby           setlocal omnifunc=rubycomplete#CompleteRuby
 set completeopt=longest,menuone
 
@@ -645,14 +621,11 @@ if has("gui_running")
     set guioptions=egmt
     set guioptions-=T
     set guioptions-=m
-    "set guioptions-=r
     set guitablabel=\[%N\]\ %t\ %M
-    ""set guitabtooltip=%F
     set showtabline=1
     set helplang=en
     set langmenu=none
     set printexpr=system('open\ -a\ Preview\ '.v:fname_in)\ +\ v:shell_error
-
     set listchars=tab:▸\ ,eol:¬,trail:·,extends:❯,precedes:❮
     set showbreak=↪
 
@@ -661,7 +634,7 @@ if has("gui_running")
     "let macvim_hig_shift_movement = 1
     "unlet macvim_hig_shift_movement
     "behave mswin
-    "
+    
     let g:NERDTreeDirArrows = 0
 
 else
