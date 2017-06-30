@@ -634,12 +634,12 @@ if has("gui_running")
     "let macvim_hig_shift_movement = 1
     "unlet macvim_hig_shift_movement
     "behave mswin
-    
+
     let g:NERDTreeDirArrows = 0
 
 else
 
-    let g:airline_powerline_fonts = 1
+    let g:airline_powerline_fonts = 0
     let g:NERDTreeDirArrows = 0
 
 endif
