@@ -145,6 +145,9 @@ NeoBundle 'davidhalter/jedi-vim'
 """""" IPYTHON
 NeoBundle 'ivanov/vim-ipython'
 
+"""""" VIRTUALENV
+NeoBundle 'jmcantrell/vim-virtualenv'
+
 """""" PYINTERACTIVE
 "NeoBundle 'clericJ/pyinteractive-vim'
 
@@ -224,7 +227,7 @@ let g:syntastic_check_on_wq = 1
 let g:syntastic_auto_jump = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
-let g:syntastic_python_checkers=['pylint']
+let g:syntastic_python_checkers=['pylint3']
 let g:syntastic_python_pylint_post_args='--disable=C0301,C0302,C0111,C0103,R0913,R0914'
 let g:syntastic_javascript_checkers=['jshint']
 
@@ -582,7 +585,7 @@ autocmd InsertLeave * set cursorline
 autocmd VimResized * :wincmd =
 
 " Remove trailing spaces before save
-autocmd FileType php,js,python,ruby,twig,xml,html,yml,css,json autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd FileType php,js,python,ruby,sh,vim,vimrc,twig,xml,html,yml,css,json autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " Drupal 7 quirks
 autocmd BufRead,BufNewFile *.install set filetype=php
@@ -634,12 +637,12 @@ if has("gui_running")
     "let macvim_hig_shift_movement = 1
     "unlet macvim_hig_shift_movement
     "behave mswin
-    
+
     let g:NERDTreeDirArrows = 0
 
 else
 
-    let g:airline_powerline_fonts = 1
+    let g:airline_powerline_fonts = 0
     let g:NERDTreeDirArrows = 0
 
 endif
