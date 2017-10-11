@@ -227,8 +227,14 @@ let g:syntastic_check_on_wq = 1
 let g:syntastic_auto_jump = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
-let g:syntastic_python_checkers=['pylint3']
-let g:syntastic_python_pylint_post_args='--disable=C0301,C0302,C0111,C0103,R0913,R0914'
+"let g:syntastic_python_checkers=['python']
+"let g:syntastic_python_checkers=['pylint']
+let g:syntastic_python_checkers=['flake8']
+let g:syntastic_python_python_exec = 'python3'
+let g:syntastic_python_pylint_exec = 'pylint3'
+"let g:syntastic_python_pylint_post_args='--disable=C0301,C0302,C0111,C0103,R0913,R0914,E301,E302'
+let g:syntastic_python_flake8_exec = 'flake8'
+let g:syntastic_python_flake8_post_args='--ignore=E301,E302,E303,E305,E501'
 let g:syntastic_javascript_checkers=['jshint']
 
 " PHP - settings
