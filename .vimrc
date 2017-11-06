@@ -112,6 +112,7 @@ NeoBundle 'Shougo/vimfiler.vim'
 """""" VIMSHELL
 NeoBundle 'Shougo/vimshell.vim'
 "NeoBundle 'oplatek/Conque-Shell'
+"NeoBundle 'wkentaro/conque.vim'
 
 """""" NEOCOMPLETE (lua)
 NeoBundle 'Shougo/neocomplete.vim'
@@ -147,6 +148,10 @@ NeoBundle 'ivanov/vim-ipython'
 
 """""" VIRTUALENV
 NeoBundle 'jmcantrell/vim-virtualenv'
+
+"""""" JINJA2
+NeoBundle 'Glench/Vim-Jinja2-Syntax'
+"NeoBundle 'lepture/vim-jinja'
 
 """""" PYINTERACTIVE
 "NeoBundle 'clericJ/pyinteractive-vim'
