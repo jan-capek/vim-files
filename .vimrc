@@ -112,6 +112,7 @@ NeoBundle 'Shougo/vimfiler.vim'
 """""" VIMSHELL
 NeoBundle 'Shougo/vimshell.vim'
 "NeoBundle 'oplatek/Conque-Shell'
+"NeoBundle 'wkentaro/conque.vim'
 
 """""" NEOCOMPLETE (lua)
 NeoBundle 'Shougo/neocomplete.vim'
@@ -145,6 +146,13 @@ NeoBundle 'davidhalter/jedi-vim'
 """""" IPYTHON
 NeoBundle 'ivanov/vim-ipython'
 
+"""""" VIRTUALENV
+NeoBundle 'jmcantrell/vim-virtualenv'
+
+"""""" JINJA2
+NeoBundle 'Glench/Vim-Jinja2-Syntax'
+"NeoBundle 'lepture/vim-jinja'
+
 """""" PYINTERACTIVE
 "NeoBundle 'clericJ/pyinteractive-vim'
 
@@ -172,6 +180,14 @@ NeoBundle 'markwu/vim-laravel4-snippets'
 NeoBundle 'm2mdas/phpcomplete-extended'
 NeoBundle 'm2mdas/phpcomplete-extended-symfony'
 NeoBundle 'm2mdas/phpcomplete-extended-laravel'
+
+
+"""""" JAVASCRIPT
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'mxw/vim-jsx'
+
+
+
 
 """""" VDEBUG (python)
 "NeoBundle 'joonty/vdebug'
@@ -229,8 +245,14 @@ let g:syntastic_check_on_wq = 1
 let g:syntastic_auto_jump = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
-let g:syntastic_python_checkers=['pylint']
-let g:syntastic_python_pylint_post_args='--disable=C0301,C0302,C0111,C0103,R0913,R0914'
+"let g:syntastic_python_checkers=['python']
+"let g:syntastic_python_checkers=['pylint']
+let g:syntastic_python_checkers=['flake8']
+let g:syntastic_python_python_exec = 'python3'
+let g:syntastic_python_pylint_exec = 'pylint3'
+"let g:syntastic_python_pylint_post_args='--disable=C0301,C0302,C0111,C0103,R0913,R0914,E301,E302'
+let g:syntastic_python_flake8_exec = 'flake8'
+let g:syntastic_python_flake8_post_args='--ignore=E301,E302,E303,E305,E501'
 let g:syntastic_javascript_checkers=['jshint']
 
 " PHP - settings
@@ -587,7 +609,7 @@ autocmd InsertLeave * set cursorline
 autocmd VimResized * :wincmd =
 
 " Remove trailing spaces before save
-autocmd FileType php,js,python,ruby,twig,xml,html,yml,css,json autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd FileType php,js,python,ruby,sh,vim,vimrc,twig,xml,html,yml,css,json autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " Drupal 7 quirks
 autocmd BufRead,BufNewFile *.install set filetype=php
@@ -639,12 +661,12 @@ if has("gui_running")
     "let macvim_hig_shift_movement = 1
     "unlet macvim_hig_shift_movement
     "behave mswin
-    
+
     let g:NERDTreeDirArrows = 0
 
 else
 
-    let g:airline_powerline_fonts = 1
+    let g:airline_powerline_fonts = 0
     let g:NERDTreeDirArrows = 0
 
 endif
