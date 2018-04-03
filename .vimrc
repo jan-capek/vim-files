@@ -177,6 +177,11 @@ NeoBundle 'm2mdas/phpcomplete-extended-laravel'
 "NeoBundle 'joonty/vdebug'
 " https://www.youtube.com/watch?v=5mtY5HQeVaw
 
+"""""" TYPESCRIPT
+NeoBundle 'leafgarland/typescript-vim'
+NeoBundle 'Quramy/tsuquyomi'
+
+
 """""" MINIMAP
 "NeoBundle 'severin-lemaignan/vim-minimap'
 
