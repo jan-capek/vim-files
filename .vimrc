@@ -181,6 +181,14 @@ NeoBundle 'm2mdas/phpcomplete-extended'
 NeoBundle 'm2mdas/phpcomplete-extended-symfony'
 NeoBundle 'm2mdas/phpcomplete-extended-laravel'
 
+
+"""""" JAVASCRIPT
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'mxw/vim-jsx'
+
+
+
+
 """""" VDEBUG (python)
 "NeoBundle 'joonty/vdebug'
 " https://www.youtube.com/watch?v=5mtY5HQeVaw
