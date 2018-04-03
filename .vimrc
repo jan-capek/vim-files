@@ -50,6 +50,8 @@ NeoBundle 'tomasr/molokai'
 "NeoBundle 'Colour_Sampler_Pack'
 "NeoBundle 'flazz/vim-colorschemes'
 "NeoBundle 'vim-scripts/ScrollColors'
+"NeoBundle 'vim-colors-solarized'
+NeoBundle 'NLKNguyen/papercolor-theme'
 
 """""" SYNTAX (nginx, markdown)
 NeoBundle 'evanmiller/nginx-vim-syntax'
@@ -311,7 +313,9 @@ let g:ctrlp_working_path_mode = 'ra'
 
 " AirLine
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'powerlineish'
+"let g:airline_theme = 'powerlineish'
+let g:airline_theme = 'light'
+"let g:airline_solarized_bg='light'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
@@ -495,7 +499,8 @@ nmap <silent><Leader>p <Esc>:r!pwgen -ABn 8 1<CR>
 " {{{
 
 set nocompatible
-set background=dark
+"set background=dark
+set background=light
 set encoding=utf-8
 set termencoding=utf-8
 set t_Co=256
@@ -516,7 +521,8 @@ set backspace=indent,eol,start
 set cm=blowfish2
 "colorscheme tir_black
 "colorscheme dracula
-colorscheme molokai
+"colorscheme molokai
+colorscheme PaperColor
 
 " Tabs
 set showtabline=1
@@ -666,7 +672,7 @@ if has("gui_running")
 
 else
 
-    let g:airline_powerline_fonts = 0
+    "let g:airline_powerline_fonts = 0
     let g:NERDTreeDirArrows = 0
 
 endif
