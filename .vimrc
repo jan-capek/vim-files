@@ -312,7 +312,7 @@ let g:ctrlp_working_path_mode = 'ra'
 
 
 " AirLine
-let g:airline_powerline_fonts = 1
+"let g:airline_powerline_fonts = 1
 "let g:airline_theme = 'powerlineish'
 let g:airline_theme = 'light'
 "let g:airline_solarized_bg='light'
@@ -668,11 +668,12 @@ if has("gui_running")
     "unlet macvim_hig_shift_movement
     "behave mswin
 
+    let g:airline_powerline_fonts = 1
     let g:NERDTreeDirArrows = 0
 
 else
 
-    "let g:airline_powerline_fonts = 0
+    let g:airline_powerline_fonts = 0
     let g:NERDTreeDirArrows = 0
 
 endif
