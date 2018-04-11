@@ -638,7 +638,7 @@ endif
 if has("gui_running")
 
     if has("macunix")
-        set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h14
+        set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h15
         "set guifont=Inconsolata\ for\ Powerline:h14
         "set guifont=Meslo\ LG\ S\ for\ Powerline:h14
         "set guifont=Menlo\ Regular:h14
