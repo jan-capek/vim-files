@@ -54,7 +54,7 @@ NeoBundle 'tomasr/molokai'
 NeoBundle 'NLKNguyen/papercolor-theme'
 
 """""" SYNTAX (nginx, markdown)
-NeoBundle 'evanmiller/nginx-vim-syntax'
+NeoBundle 'chr4/nginx.vim'
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'elzr/vim-json'
 
