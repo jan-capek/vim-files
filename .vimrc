@@ -487,7 +487,7 @@ nmap <silent><Leader><CR> <Esc>:call ToggleWrap()<CR>
 nmap <silent><Leader>` <Esc>:call g:ToggleNuMode()<CR>
 
 " Password Generator
-nmap <silent><Leader>p <Esc>:r!pwgen -ABn 8 1<CR>
+nmap <silent><Leader>p <Esc>:r!pwgen -ABn 10 1<CR>
 
 " VIM COMMANDER
 "noremap <silent><F11> :cal VimCommanderToggle()<CR>
