@@ -53,10 +53,12 @@ NeoBundle 'tomasr/molokai'
 "NeoBundle 'vim-colors-solarized'
 NeoBundle 'NLKNguyen/papercolor-theme'
 
-"""""" SYNTAX (nginx, markdown)
+"""""" SYNTAX (nginx, markdown, json, cql)
 NeoBundle 'chr4/nginx.vim'
-NeoBundle 'plasticboy/vim-markdown'
+"NeoBundle 'plasticboy/vim-markdown'
+NeoBundle 'gabrielelana/vim-markdown'
 NeoBundle 'elzr/vim-json'
+NeoBundle 'elubow/cql-vim'
 
 """""" CSS3, LESS
 NeoBundle 'hail2u/vim-css3-syntax'
@@ -155,6 +157,9 @@ NeoBundle 'jmcantrell/vim-virtualenv'
 NeoBundle 'Glench/Vim-Jinja2-Syntax'
 "NeoBundle 'lepture/vim-jinja'
 
+"""""" GOLANG
+NeoBundle 'fatih/vim-go'
+
 """""" PYINTERACTIVE
 "NeoBundle 'clericJ/pyinteractive-vim'
 
@@ -183,13 +188,9 @@ NeoBundle 'm2mdas/phpcomplete-extended'
 NeoBundle 'm2mdas/phpcomplete-extended-symfony'
 NeoBundle 'm2mdas/phpcomplete-extended-laravel'
 
-
 """""" JAVASCRIPT
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'mxw/vim-jsx'
-
-
-
 
 """""" VDEBUG (python)
 "NeoBundle 'joonty/vdebug'
@@ -199,6 +200,8 @@ NeoBundle 'mxw/vim-jsx'
 NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'Quramy/tsuquyomi'
 
+"""""" MUNDO - undo tree
+NeoBundle 'simnalamburt/vim-mundo'
 
 """""" MINIMAP
 "NeoBundle 'severin-lemaignan/vim-minimap'
@@ -271,8 +274,9 @@ let javaScript_fold=1
 let g:xml_syntax_folding=1
 
 " MARKDOWN
-let g:vim_markdown_folding_disabled=1
-let g:vim_markdown_initial_foldlevel=1
+"let g:vim_markdown_folding_disabled=1
+"let g:vim_markdown_initial_foldlevel=1
+let g:markdown_enable_spell_checking = 0
 
 " NetRw - settings
 let g:netrw_banner=0
@@ -381,7 +385,6 @@ let g:phpcomplete_index_composer_command = 'composer'
 " CONQUETERM
 "let g:ConqueTerm_Color = 1
 
-
 " VDEBUG
 let g:vdebug_options = {}
 let g:vdebug_options['server'] = "localhost"
@@ -397,6 +400,11 @@ let g:vdebug_options["debug_window_level"] = 2
 let g:vdebug_features = {}
 let g:vdebug_features['max_depth'] = 2048
 let g:vdebug_features['max_children'] = 2048
+
+" MUNDO
+let g:mundo_right = 1
+let g:mundo_width = 40
+let g:mundo_preview_height = 20
 
 
 " }}}
@@ -489,6 +497,9 @@ nmap <silent><Leader>` <Esc>:call g:ToggleNuMode()<CR>
 " Password Generator
 nmap <silent><Leader>p <Esc>:r!pwgen -ABn 10 1<CR>
 
+" MUNDO - undo tree
+nmap <silent><Leader>u <Esc>:MundoToggle<CR>
+
 " VIM COMMANDER
 "noremap <silent><F11> :cal VimCommanderToggle()<CR>
 
@@ -519,6 +530,7 @@ set t_vb=
 set mouse=a
 set backspace=indent,eol,start
 set cm=blowfish2
+"set autowriteall
 "colorscheme tir_black
 "colorscheme dracula
 "colorscheme molokai
@@ -538,16 +550,10 @@ set splitbelow
 " Diff split
 set diffopt+=vertical
 
-" SWAP & BACKUP
-set noswapfile
-set backup
-"set undofile
-"set directory=~/.vim-swap//
-"set backupdir=~/.vim-back//
-"set undodir=~/.vim-undo//
-set directory=~/.vim-swap
-set backupdir=~/.vim-back
-set undodir=~/.vim-undo
+" SWAP, BACKUP, UNDO
+set directory=~/.vim-swap//
+set backupdir=~/.vim-back//
+set undodir=~/.vim-undo//
 if !isdirectory(expand(&directory))
     call mkdir(expand(&directory), "p")
 endif
@@ -557,6 +563,10 @@ endif
 if !isdirectory(expand(&undodir))
     call mkdir(expand(&undodir), "p")
 endif
+
+set noswapfile
+set backup
+set undofile
 
 " Wrapping, Scrolling
 set nowrap
@@ -616,6 +626,9 @@ autocmd VimResized * :wincmd =
 
 " Remove trailing spaces before save
 autocmd FileType php,js,python,ruby,sh,vim,vimrc,twig,xml,html,yml,css,json autocmd BufWritePre <buffer> :%s/\s\+$//e
+
+" Auto save file when focus is lost
+autocmd FocusLost * silent! :w
 
 " Drupal 7 quirks
 autocmd BufRead,BufNewFile *.install set filetype=php
