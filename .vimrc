@@ -259,6 +259,7 @@ let g:syntastic_python_pylint_exec = 'pylint3'
 let g:syntastic_python_flake8_exec = 'flake8'
 let g:syntastic_python_flake8_post_args='--ignore=E301,E302,E303,E305,E501'
 let g:syntastic_javascript_checkers=['jshint']
+let g:syntastic_go_checkers=['go']
 
 " PHP - settings
 "let php_sql_query=1
