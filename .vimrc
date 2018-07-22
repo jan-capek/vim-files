@@ -175,6 +175,9 @@ NeoBundle 'idanarye/vim-merginal'
 """""" GITGUTTER
 NeoBundle 'airblade/vim-gitgutter'
 
+"""""" GITV
+"NeoBundle 'gregsexton/gitv'
+
 """""" XML
 NeoBundle 'sukima/xmledit'
 
@@ -258,8 +261,12 @@ let g:syntastic_python_pylint_exec = 'pylint3'
 "let g:syntastic_python_pylint_post_args='--disable=C0301,C0302,C0111,C0103,R0913,R0914,E301,E302'
 let g:syntastic_python_flake8_exec = 'flake8'
 let g:syntastic_python_flake8_post_args='--ignore=E301,E302,E303,E305,E501'
-let g:syntastic_javascript_checkers=['jshint']
+"let g:syntastic_javascript_checkers=['jshint']
+let g:syntastic_javascript_checkers=['eslint']
 let g:syntastic_go_checkers=['go']
+"let g:syntastic_go_checkers=['golint']
+"let g:syntastic_go_checkers=['govet']
+"let g:syntastic_go_checkers=['errcheck']
 
 " PHP - settings
 "let php_sql_query=1
@@ -270,6 +277,7 @@ let php_folding=1
 
 " JAVASCRIPT - settings
 let javaScript_fold=1
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
 " XML - settings
 let g:xml_syntax_folding=1
