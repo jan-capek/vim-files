@@ -191,9 +191,10 @@ NeoBundle 'm2mdas/phpcomplete-extended'
 NeoBundle 'm2mdas/phpcomplete-extended-symfony'
 NeoBundle 'm2mdas/phpcomplete-extended-laravel'
 
-"""""" JAVASCRIPT
+"""""" JAVASCRIPT / JSX
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'mxw/vim-jsx'
+NeoBundle 'ternjs/tern_for_vim', { 'build': { 'mac': 'npm install', 'linux': 'npm install', 'unix': 'npm install' } }
 
 """""" VDEBUG (python)
 "NeoBundle 'joonty/vdebug'
@@ -371,6 +372,7 @@ endif
 let g:neocomplete#force_omni_input_patterns.python =
 \ '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
 " alternative pattern: '\h\w*\|[^. \t]\.\w*'
+"let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
 
 " NEOSNIPPET
 "let g:neosnippet#disable_runtime_snippets = { 'python':1 }
@@ -608,7 +610,8 @@ filetype indent on
 
 " OmniComplete
 autocmd FileType python         setlocal omnifunc=jedi#completions
-autocmd FileType javascript     setlocal omnifunc=javascriptcomplete#CompleteJS
+"autocmd FileType javascript     setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType javascript     setlocal omnifunc=tern#Complete
 autocmd FileType html,markdown  setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css            setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType xml            setlocal omnifunc=xmlcomplete#CompleteTags
