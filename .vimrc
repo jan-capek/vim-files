@@ -141,8 +141,11 @@ NeoBundle 'mattn/emmet-vim'
 """""" SPARKUP
 "NeoBundle 'tristen/vim-sparkup'
 
+"""""" ALE
+NeoBundle 'w0rp/ale'
+
 """""" SYNTASTIC
-NeoBundle 'scrooloose/syntastic'
+"NeoBundle 'scrooloose/syntastic'
 
 """""" JEDI-VIM (python)
 NeoBundle 'davidhalter/jedi-vim'
