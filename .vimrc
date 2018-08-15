@@ -53,7 +53,7 @@ NeoBundle 'tomasr/molokai'
 "NeoBundle 'vim-colors-solarized'
 NeoBundle 'NLKNguyen/papercolor-theme'
 
-"""""" SYNTAX (nginx, markdown, json, cql)
+"""""" SYNTAX HIGHLIGHTING (nginx-config, markdown, json, cassandra-cql)
 NeoBundle 'chr4/nginx.vim'
 "NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'gabrielelana/vim-markdown'
@@ -70,12 +70,6 @@ NeoBundle 'skammer/vim-css-color'
 
 """""" SASS, COMPASS, HAML
 NeoBundle 'tpope/vim-haml'
-
-"""""" CTRLP
-"NeoBundle 'ctrlpvim/ctrlp.vim'
-
-"""""" CTRL-SPACE
-"NeoBundle 'szw/vim-ctrlspace'
 
 """""" FASTFOLD
 NeoBundle 'Konfekt/FastFold'
@@ -441,11 +435,12 @@ nmap <silent>\ :bnext<CR>
 nmap <silent>\| :bprev<CR>
 nmap <silent><Leader>. :call BufferDelete()<CR>
 
-" Moving around through wrapped lines
+" Moving around through wrapped lines in normal mode
 nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
 nnoremap <expr> <down> v:count ? 'j' : 'gj'
 nnoremap <expr> <up> v:count ? 'k' : 'gk'
+" Moving around through wrapped lines in insert mode
 "imap <silent> <Up> <C-o>gk
 "imap <silent> <Down> <C-o>gj
 
@@ -461,15 +456,15 @@ nmap <silent><leader>8 <Plug>AirlineSelectTab8
 nmap <silent><leader>9 <Plug>AirlineSelectTab9
 
 " replace without yanking in visial mode
-vmap r "_dp
+vmap r "_dhp
 
 " EASYMOTION
 map <silent><Space> <Plug>(easymotion-s)
 
-" insert new line
-imap <S-CR> <Esc>O
-nmap <S-CR> O<Esc>
-nmap <CR> o<Esc>
+" insert new line (won't work - remove)
+"imap <S-CR> <Esc>O
+"nmap <S-CR> O<Esc>
+"nmap <CR> o<Esc>
 
 " window switching
 nmap <Tab> <C-W>w
