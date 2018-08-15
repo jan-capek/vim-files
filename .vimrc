@@ -1,4 +1,4 @@
-" PLUGINS
+" PLUGINS --------------------------------------------------------------------
 " {{{
 
 " Note: Skip initialization for vim-tiny or vim-small.
@@ -245,7 +245,7 @@ NeoBundleCheck
 
 " }}}
 
-" PLUGINS SETTING
+" PLUGINS SETTING ------------------------------------------------------------
 " {{{
 
 
@@ -424,7 +424,7 @@ let g:mundo_preview_height = 20
 " }}}
 
 
-" KEYS MAPPING
+" KEYS MAPPING ---------------------------------------------------------------
 " {{{
 
 
@@ -434,15 +434,20 @@ let mapleader = ','
 " ECSAPE, SAVE, QUIT
 imap <silent>;; <Esc>
 nmap <silent>; <Esc>:w<CR>
-"map  <silent><Esc><Esc> <Esc>:w<CR>
 nmap <silent><Leader>q <Esc>:q<CR>
 
 " BUFFER SWITCHING, DELETING
-"nmap <silent><Space> :bnext<CR>
-"nmap <silent><S-Space> :bprev<CR>
 nmap <silent>\ :bnext<CR>
 nmap <silent>\| :bprev<CR>
 nmap <silent><Leader>. :call BufferDelete()<CR>
+
+" Moving around through wrapped lines
+nnoremap <expr> j v:count ? 'j' : 'gj'
+nnoremap <expr> k v:count ? 'k' : 'gk'
+nnoremap <expr> <down> v:count ? 'j' : 'gj'
+nnoremap <expr> <up> v:count ? 'k' : 'gk'
+"imap <silent> <Up> <C-o>gk
+"imap <silent> <Down> <C-o>gj
 
 " BUFFER SWITCHING (leader #)
 nmap <silent><leader>1 <Plug>AirlineSelectTab1
@@ -459,9 +464,7 @@ nmap <silent><leader>9 <Plug>AirlineSelectTab9
 vmap r "_dp
 
 " EASYMOTION
-"map <silent><Leader><Space> <Plug>(easymotion-s)
 map <silent><Space> <Plug>(easymotion-s)
-"map <silent><Leader>, <Plug>(easymotion-s)
 
 " insert new line
 imap <S-CR> <Esc>O
@@ -520,7 +523,7 @@ nmap <silent><Leader>u <Esc>:MundoToggle<CR>
 
 " }}}
 
-" GENERAL SETTING
+" GENERAL SETTING -----------------------------------------------------------
 " {{{
 
 set nocompatible
@@ -652,7 +655,7 @@ autocmd BufRead,BufNewFile *.inc set filetype=php
 
 " }}}
 
-" GUI SETTINGS (MacVIM/gVIM)
+" GUI SETTINGS (MacVIM/gVIM) -------------------------------------------------
 " {{{
 
 " System clipboard
@@ -706,16 +709,6 @@ else
 
 endif
 
-
-
-" }}}
-
-" ETC
-" {{{
-
-
-" colors page
-" http://www.calmar.ws/vim/256-xterm-24bit-rgb-color-chart.html
 
 
 " }}}
