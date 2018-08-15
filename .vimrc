@@ -101,8 +101,8 @@ NeoBundle 'gregsexton/MatchTag'
 """""" EASYMOTION
 NeoBundle 'Lokaltog/vim-easymotion'
 
-"""""" UNITE
-NeoBundle 'Shougo/unite.vim'
+"""""" DENITE
+NeoBundle 'Shougo/denite.nvim'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/neossh.vim'
 NeoBundle 'Shougo/vimfiler.vim'
@@ -317,11 +317,6 @@ let g:ctrlp_match_window = 'top,order:ttb,min:1,max:32,results:32'
 let g:ctrlp_working_path_mode = 'ra'
 "let g:ctrlp_open_new_file = 'r'
 
-" UNITE
-" https://github.com/Shougo/unite.vim/issues/894
-" http://www.codeography.com/2013/06/17/replacing-all-the-things-with-unite-vim.html
-
-
 " AirLine
 "let g:airline_powerline_fonts = 1
 "let g:airline_theme = 'powerlineish'
@@ -480,10 +475,12 @@ nmap <silent><Leader>- :diffoff!<CR>
 " pretty xml
 nmap <silent><Leader>x :PrettyXML<CR>
 
-" UNITE
-nmap <silent><leader>; :<C-u>Unite -no-split -buffer-name=mru -start-insert file_mru<cr>
-nmap <silent><leader>/ :<C-u>Unite -no-split -buffer-name=files -start-insert file<cr>
-"nnoremap <leader>/ :<C-u>Unite -no-split -buffer-name=files -start-insert file<cr>
+" DENITE
+call denite#custom#map('insert', '<Down>', '<denite:move_to_next_line>', 'noremap')
+call denite#custom#map('insert', '<Up>', '<denite:move_to_previous_line>', 'noremap')
+call denite#custom#source('file_mru', 'matchers', ['matcher/substring'])
+nnoremap <silent><leader>; :<C-u>Denite -split=no file_mru<cr>
+nnoremap <silent><leader>/ :<C-u>Denite -split=no file<cr>
 
 " NERDTree & NetRw
 nmap <silent><Leader><TAB> :NERDTreeToggle<CR>
