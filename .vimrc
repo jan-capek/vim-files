@@ -104,6 +104,7 @@ NeoBundle 'Lokaltog/vim-easymotion'
 """""" DENITE
 NeoBundle 'Shougo/denite.nvim'
 NeoBundle 'Shougo/neomru.vim'
+"NeoBundle 'neoclide/redismru.vim', { 'build': { 'mac': 'npm install', 'linux': 'npm install', 'unix': 'npm install' } }
 NeoBundle 'Shougo/neossh.vim'
 NeoBundle 'Shougo/vimfiler.vim'
 
