@@ -480,8 +480,9 @@ nmap <silent><Leader>x :PrettyXML<CR>
 call denite#custom#map('insert', '<Down>', '<denite:move_to_next_line>', 'noremap')
 call denite#custom#map('insert', '<Up>', '<denite:move_to_previous_line>', 'noremap')
 call denite#custom#source('file_mru', 'matchers', ['matcher/substring'])
+call denite#custom#source('file/rec', 'matchers', ['matcher/substring'])
 nnoremap <silent><leader>; :<C-u>Denite -split=no file_mru<cr>
-nnoremap <silent><leader>/ :<C-u>Denite -split=no file<cr>
+nnoremap <silent><leader>/ :<C-u>Denite -split=no file/rec<cr>
 
 " NERDTree & NetRw
 nmap <silent><Leader><TAB> :NERDTreeToggle<CR>
