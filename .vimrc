@@ -106,7 +106,10 @@ NeoBundle 'Shougo/denite.nvim'
 NeoBundle 'Shougo/neomru.vim'
 "NeoBundle 'neoclide/redismru.vim', { 'build': { 'mac': 'npm install', 'linux': 'npm install', 'unix': 'npm install' } }
 NeoBundle 'Shougo/neossh.vim'
-NeoBundle 'Shougo/vimfiler.vim'
+"NeoBundle 'Shougo/vimfiler.vim'
+NeoBundle 'Shougo/defx.nvim'
+NeoBundle 'roxma/nvim-yarp'
+NeoBundle 'roxma/vim-hug-neovim-rpc'
 
 """""" VIMSHELL
 NeoBundle 'Shougo/vimshell.vim'
@@ -114,7 +117,11 @@ NeoBundle 'Shougo/vimshell.vim'
 "NeoBundle 'wkentaro/conque.vim'
 
 """""" NEOCOMPLETE (lua)
-NeoBundle 'Shougo/neocomplete.vim'
+"NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'Shougo/deoplete.nvim'
+NeoBundle 'roxma/nvim-yarp'
+NeoBundle 'roxma/vim-hug-neovim-rpc'
+NeoBundle 'zchee/deoplete-go', { 'build': { 'mac': 'make', 'linux': 'make', 'unix': 'make' } }
 
 """""" NEOSNIPPET
 NeoBundle 'Shougo/neosnippet.vim'
@@ -339,6 +346,9 @@ let g:airline#extensions#tabline#buffer_idx_mode = 1
 "let g:lesscss_toggle_key = '<Leader>.'
 "let g:lesscss_on = 0
 
+" DEOPLETE
+let g:deoplete#enable_at_startup = 1
+
 " NEOCOMPLETE
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
@@ -487,7 +497,31 @@ nnoremap <silent><leader>/ :<C-u>Denite -split=no file<cr>
 nmap <silent><Leader><TAB> :NERDTreeToggle<CR>
 
 " VIMFILER
-nmap <silent><Leader>f :VimFiler<CR>
+"nmap <silent><Leader>f :VimFiler<CR>
+
+" DEFX
+nmap <silent><Leader>f :Defx<CR>
+autocmd FileType defx call s:defx_my_settings()
+function! s:defx_my_settings() abort
+    " Define mappings
+    nnoremap <silent><buffer><expr> <CR>    defx#do_action('open')
+    nnoremap <silent><buffer><expr> l       defx#do_action('open')
+    nnoremap <silent><buffer><expr> E       defx#do_action('open', 'vsplit')
+    nnoremap <silent><buffer><expr> P       defx#do_action('open', 'pedit')
+    nnoremap <silent><buffer><expr> K       defx#do_action('new_directory')
+    nnoremap <silent><buffer><expr> N       defx#do_action('new_file')
+    nnoremap <silent><buffer><expr> d       defx#do_action('remove')
+    nnoremap <silent><buffer><expr> r       defx#do_action('rename')
+    nnoremap <silent><buffer><expr> h       defx#do_action('cd', ['..'])
+    nnoremap <silent><buffer><expr> ~       defx#do_action('cd')
+    nnoremap <silent><buffer><expr> q       defx#do_action('quit')
+    nnoremap <silent><buffer><expr> <Space> defx#do_action('toggle_select') . 'j'
+    nnoremap <silent><buffer><expr> *       defx#do_action('toggle_select_all')
+    nnoremap <silent><buffer><expr> j       line('.') == line('$') ? 'gg' : 'j'
+    nnoremap <silent><buffer><expr> k       line('.') == 1 ? 'G' : 'k'
+    nnoremap <silent><buffer><expr> <C-l>   defx#do_action('redraw')
+    nnoremap <silent><buffer><expr> <C-g>   defx#do_action('print')
+endfunction
 
 " FUGITIVE GIT
 nmap <silent><Leader>s :Gstatus<CR>
