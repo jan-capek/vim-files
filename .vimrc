@@ -21,23 +21,12 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " Set platform specific make command
 let g:make = 'gmake'
 if system('uname -o') =~ '^GNU/'
-        let g:make = 'make'
+    let g:make = 'make'
 endif
 
 " My Bundles here:
 " Refer to |:NeoBundle-examples|.
 " Note: You don't set neobundle setting in .gvimrc!
-
-"""""" VIMPROC
-NeoBundle 'Shougo/vimproc.vim' , {
-\ 'build' : {
-\     'windows' : 'tools\\update-dll-mingw',
-\     'cygwin' : 'make -f make_cygwin.mak',
-\     'mac' : 'make',
-\     'linux' : 'make',
-\     'unix' : 'gmake',
-\    },
-\ }
 
 """""" EDITORCONFIG
 NeoBundle 'editorconfig/editorconfig-vim'
@@ -101,59 +90,61 @@ NeoBundle 'gregsexton/MatchTag'
 """""" EASYMOTION
 NeoBundle 'Lokaltog/vim-easymotion'
 
-"""""" DENITE
+"""""" DENITE, NEOMRU, DEFX
+if !has('nvim')
+    NeoBundle 'roxma/nvim-yarp'
+    NeoBundle 'roxma/vim-hug-neovim-rpc'
+endif
 NeoBundle 'Shougo/denite.nvim'
 NeoBundle 'Shougo/neomru.vim'
-"NeoBundle 'neoclide/redismru.vim', { 'build': { 'mac': 'npm install', 'linux': 'npm install', 'unix': 'npm install' } }
 NeoBundle 'Shougo/neossh.vim'
-"NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'Shougo/defx.nvim'
-NeoBundle 'roxma/nvim-yarp'
-NeoBundle 'roxma/vim-hug-neovim-rpc'
+"NeoBundle 'neoclide/redismru.vim', { 'build': { 'mac': 'npm install', 'linux': 'npm install', 'unix': 'npm install' } }
+
+"""""" DEOPLETE
+NeoBundle 'Shougo/deoplete.nvim'
+NeoBundle 'zchee/deoplete-go', { 'build': { 'mac': 'make', 'linux': 'make', 'unix': 'make' } }  " GOLANG
+NeoBundle 'zchee/deoplete-jedi'                                                                 " PYTHON
+NeoBundle 'phpactor/phpactor'                                                                   " PHP
+NeoBundle 'kristijanhusak/deoplete-phpactor'                                                    " PHP
+"NeoBundle 'padawan-php/deoplete-padawan'                                                       " PHP
+NeoBundle 'wokalski/autocomplete-flow'                                                          " JAVASCRIPT
+NeoBundle 'Shougo/neco-vim'                                                                     " VIML
+NeoBundle 'thalesmello/webcomplete.vim'                                                         " WEB BROWSER
+
+"""""" ECHODOC
+NeoBundle 'Shougo/echodoc.vim'
+let g:echodoc#enable_at_startup = 1
+set noshowmode
+set cmdheight=2
+
+"""""" NEOSNIPPET, SNIPPETS
+NeoBundle 'Shougo/neosnippet.vim'
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'honza/vim-snippets'
+
+"""""" SYNTASTIC
+NeoBundle 'scrooloose/syntastic'
+
+"""""" ALE - Asynchronous Lint Engine
+"NeoBundle 'w0rp/ale'
+
+"""""" EMMET (ZEN CODING)
+NeoBundle 'mattn/emmet-vim'
 
 """""" VIMSHELL
 NeoBundle 'Shougo/vimshell.vim'
 "NeoBundle 'oplatek/Conque-Shell'
 "NeoBundle 'wkentaro/conque.vim'
 
-"""""" NEOCOMPLETE (lua)
-"NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'Shougo/deoplete.nvim'
-NeoBundle 'roxma/nvim-yarp'
-NeoBundle 'roxma/vim-hug-neovim-rpc'
-NeoBundle 'zchee/deoplete-go', { 'build': { 'mac': 'make', 'linux': 'make', 'unix': 'make' } }
-
-"""""" NEOSNIPPET
-NeoBundle 'Shougo/neosnippet.vim'
-NeoBundle 'Shougo/neosnippet-snippets'
-
-"""""" ULTISNIP (python)
-"NeoBundle 'MarcWeber/UltiSnips'
-
-"""""" SNIPPETS
-NeoBundle 'scrooloose/snipmate-snippets'
-NeoBundle 'honza/vim-snippets'
-
-"""""" YOUCOMPLETEME
-"NeoBundle 'Valloric/YouCompleteMe'
-
-"""""" EMMET (ZEN CODING)
-NeoBundle 'mattn/emmet-vim'
-
 """""" SPARKUP
 "NeoBundle 'tristen/vim-sparkup'
-
-"""""" ALE
-NeoBundle 'w0rp/ale'
-
-"""""" SYNTASTIC
-"NeoBundle 'scrooloose/syntastic'
 
 """""" JEDI-VIM (python)
 NeoBundle 'davidhalter/jedi-vim'
 
 """""" IPYTHON
-NeoBundle 'ivanov/vim-ipython'
+"NeoBundle 'ivanov/vim-ipython'
 
 """""" VIRTUALENV
 NeoBundle 'jmcantrell/vim-virtualenv'
@@ -185,16 +176,6 @@ NeoBundle 'airblade/vim-gitgutter'
 
 """""" XML
 NeoBundle 'sukima/xmledit'
-
-"""""" PHP
-"NeoBundle 'shawncplus/phpcomplete.vim'
-"NeoBundle 'spf13/PIV'
-NeoBundle 'xsbeats/vim-blade'
-NeoBundle 'markwu/vim-laravel4-snippets'
-
-NeoBundle 'm2mdas/phpcomplete-extended'
-NeoBundle 'm2mdas/phpcomplete-extended-symfony'
-NeoBundle 'm2mdas/phpcomplete-extended-laravel'
 
 """""" JAVASCRIPT / JSX
 NeoBundle 'pangloss/vim-javascript'
@@ -263,7 +244,7 @@ let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
 "let g:syntastic_python_checkers=['pylint']
 let g:syntastic_python_checkers=['flake8']
 let g:syntastic_python_python_exec = 'python3'
-let g:syntastic_python_pylint_exec = 'pylint3'
+let g:syntastic_python_pylint_exec = 'pylint'
 "let g:syntastic_python_pylint_post_args='--disable=C0301,C0302,C0111,C0103,R0913,R0914,E301,E302'
 let g:syntastic_python_flake8_exec = 'flake8'
 let g:syntastic_python_flake8_post_args='--ignore=E301,E302,E303,E305,E501'
@@ -320,11 +301,6 @@ let g:tagbar_width = 40
 let g:tagbar_left = 0
 let g:tagbar_sort = 0
 
-" CTRLP
-let g:ctrlp_match_window = 'top,order:ttb,min:1,max:32,results:32'
-let g:ctrlp_working_path_mode = 'ra'
-"let g:ctrlp_open_new_file = 'r'
-
 " AirLine
 "let g:airline_powerline_fonts = 1
 "let g:airline_theme = 'powerlineish'
@@ -340,61 +316,21 @@ let g:airline#extensions#tabline#buffer_idx_mode = 1
 "let g:airline#extensions#tabline#show_buffers = 0
 "let g:airline_section_z =
 
-" LESSCSS
-"let g:lesscss_cmd = '$(which lessc)'
-"let g:lesscss_save_to = '../css/'
-"let g:lesscss_toggle_key = '<Leader>.'
-"let g:lesscss_on = 0
-
 " DEOPLETE
 let g:deoplete#enable_at_startup = 1
-
-" NEOCOMPLETE
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#sources#syntax#auto_completion_start_length = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 1
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-
-" JEDI-NEOCOMPLETE integration
-let g:jedi#completions_enabled = 0
-"let g:jedi#auto_initialization = 0
-let g:jedi#auto_vim_configuration = 0
-"let g:jedi#use_tabs_not_buffers = 1
-"let g:jedi#use_splits_not_buffers = "bottom"
-"let g:jedi#popup_on_dot = 1
-"let g:jedi#popup_select_first = 1
-let g:jedi#show_call_signatures = 1
-"let g:jedi#smart_auto_mappings = 0
-if has('python3')
-    let g:jedi#force_py_version = 3
-endif
-if !exists('g:neocomplete#force_omni_input_patterns')
-    let g:neocomplete#force_omni_input_patterns = {}
-endif
-let g:neocomplete#force_omni_input_patterns.python =
-\ '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
-" alternative pattern: '\h\w*\|[^. \t]\.\w*'
-"let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
+call deoplete#custom#source('_',  'max_menu_width', 0)
+call deoplete#custom#source('_',  'max_abbr_width', 0)
+call deoplete#custom#source('_',  'max_kind_width', 0)
 
 " NEOSNIPPET
 "let g:neosnippet#disable_runtime_snippets = { 'python':1 }
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+let g:neosnippet#enable_completed_snippet = 1
 " Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
-" SuperTab like snippets behavior.
-"imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-"smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-" For snippet_complete marker.
-"if has('conceal')
-  "set conceallevel=2 concealcursor=i
-"endif
-
-" PHPCOMPLETE
-let g:phpcomplete_index_composer_command = 'composer'
 
 " CONQUETERM
 "let g:ConqueTerm_Color = 1
@@ -490,8 +426,9 @@ nmap <silent><Leader>x :PrettyXML<CR>
 call denite#custom#map('insert', '<Down>', '<denite:move_to_next_line>', 'noremap')
 call denite#custom#map('insert', '<Up>', '<denite:move_to_previous_line>', 'noremap')
 call denite#custom#source('file_mru', 'matchers', ['matcher/substring'])
+call denite#custom#source('file/rec', 'matchers', ['matcher/substring'])
 nnoremap <silent><leader>; :<C-u>Denite -split=no file_mru<cr>
-nnoremap <silent><leader>/ :<C-u>Denite -split=no file<cr>
+nnoremap <silent><leader>/ :<C-u>Denite -split=no file/rec<cr>
 
 " NERDTree & NetRw
 nmap <silent><Leader><TAB> :NERDTreeToggle<CR>
@@ -559,7 +496,7 @@ set background=light
 set encoding=utf-8
 set termencoding=utf-8
 set t_Co=256
-set term=xterm-256color
+"set term=xterm-256color
 set history=1000
 set fileformat=unix
 set laststatus=2
@@ -573,7 +510,7 @@ set noeb
 set t_vb=
 set mouse=a
 set backspace=indent,eol,start
-set cm=blowfish2
+"set cm=blowfish2
 "set autowriteall
 "colorscheme tir_black
 "colorscheme dracula
@@ -642,14 +579,14 @@ filetype plugin on
 filetype indent on
 
 " OmniComplete
-autocmd FileType python         setlocal omnifunc=jedi#completions
+"autocmd FileType python         setlocal omnifunc=jedi#completions
 "autocmd FileType javascript     setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType javascript     setlocal omnifunc=tern#Complete
+"autocmd FileType javascript     setlocal omnifunc=tern#Complete
 autocmd FileType html,markdown  setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css            setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType xml            setlocal omnifunc=xmlcomplete#CompleteTags
 "autocmd FileType php            setlocal omnifunc=phpcomplete#CompletePHP
-autocmd FileType php            setlocal omnifunc=phpcomplete_extended#CompletePHP
+"autocmd FileType php            setlocal omnifunc=phpcomplete_extended#CompletePHP
 autocmd FileType ruby           setlocal omnifunc=rubycomplete#CompleteRuby
 set completeopt=longest,menuone
 
