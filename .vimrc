@@ -59,8 +59,16 @@ NeoBundle 'skammer/vim-css-color'
 """"""""" SASS, COMPASS, HAML
 NeoBundle 'tpope/vim-haml'
 
-""""""""" FASTFOLD
+""""""""" FOLDING
 NeoBundle 'Konfekt/FastFold'
+"NeoBundle 'tmhedberg/SimpylFold'
+"NeoBundle 'pseewald/vim-anyfold'
+"let anyfold_activate=1
+"let anyfold_fold_display = 1
+"let anyfold_identify_comments = 1
+"let anyfold_fold_comments = 1
+"hi Folded term=underline
+"hi Folded term=NONE cterm=NONE
 
 """"""""" NERDTREE
 NeoBundle 'scrooloose/nerdtree'
@@ -106,6 +114,12 @@ NeoBundle 'Shougo/echodoc.vim'
 NeoBundle 'Shougo/neco-vim'
 NeoBundle 'thalesmello/webcomplete.vim'
 
+""""""""" NCM2 (will be tested later)
+"NeoBundle 'ncm2/ncm2'
+
+""""""""" LANGUAGE SERVER (CLIENT)
+"NeoBundle 'autozimu/LanguageClient-neovim', { 'rev' : 'next',  'build': 'bash install.sh' }
+
 """"""""" NEOSNIPPET, SNIPPETS, EMMET
 NeoBundle 'Shougo/neosnippet.vim'
 NeoBundle 'Shougo/neosnippet-snippets'
@@ -125,6 +139,7 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'idanarye/vim-merginal'
 NeoBundle 'airblade/vim-gitgutter'
 "NeoBundle 'gregsexton/gitv'
+"NeoBundle 'neoclide/denite-git'
 
 """"""""" XML
 NeoBundle 'sukima/xmledit'
@@ -147,7 +162,7 @@ NeoBundle 'jan-capek/vim-extras'
 
 """"""""" GOLANG
 NeoBundle 'fatih/vim-go'
-NeoBundle 'zchee/deoplete-go', { 'build': { 'mac': 'make', 'linux': 'make', 'unix': 'make' } }
+NeoBundle 'zchee/deoplete-go', { 'build': 'make' }
 "NeoBundle 'garyburd/go-explorer'
 
 """"""""" PYTHON
@@ -158,15 +173,27 @@ NeoBundle 'Glench/Vim-Jinja2-Syntax'
 "NeoBundle 'lepture/vim-jinja'
 "NeoBundle 'ivanov/vim-ipython'
 "NeoBundle 'clericJ/pyinteractive-vim'
+NeoBundle 'tmhedberg/SimpylFold'
 
 """"""""" PHP
-NeoBundle 'phpactor/phpactor', { 'build': { 'mac': 'composer install', 'linux': 'composer install', 'unix': 'composer install' } }
+NeoBundle 'phpactor/phpactor',{ 'build': 'composer install' }
 NeoBundle 'kristijanhusak/deoplete-phpactor'
+"NeoBundle 'lvht/phpcd.vim', { 'build': 'composer install' }
+"NeoBundle 'roxma/LanguageServer-php-neovim', { 'build': 'composer install && composer run-script parse-stubs' }
+NeoBundle 'swekaj/php-foldexpr.vim'
+"let b:phpfold_use = 1
+"let b:phpfold_text = 1
+"let b:phpfold_text_right_lines = 1
+autocmd BufRead,BufNewFile *.php,*.inc let b:phpfold_text_right_lines = 1
+autocmd BufRead,BufNewFile *.php,*.inc let b:phpfold_docblocks = 1
+autocmd BufRead,BufNewFile *.php,*.inc let b:phpfold_doc_with_funcs = 1
+"NeoBundle 'rayburgemeestre/phpfolding.vim'
+"let g:DisablePHPFoldingClass = 0
 
 """"""""" JAVASCRIPT / JSX
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'mxw/vim-jsx'
-NeoBundle 'ternjs/tern_for_vim', { 'build': { 'mac': 'npm install', 'linux': 'npm install', 'unix': 'npm install' } }
+NeoBundle 'ternjs/tern_for_vim', { 'build': 'npm install' }
 NeoBundle 'wokalski/autocomplete-flow'
 
 """"""""" TYPESCRIPT
@@ -210,15 +237,17 @@ let g:syntastic_python_flake8_post_args='--ignore=E301,E302,E303,E305,E501'
 let g:syntastic_javascript_checkers=['eslint', 'jshint']
 let g:syntastic_go_checkers=['go', 'golint', 'govet', 'errcheck']
 
+" ALE
+let g:ale_completion_enabled = 1
+let g:ale_set_balloons = 1
+
 " PHP
 "let php_sql_query=1
 "let php_htmlInStrings=1
-let php_folding=1
 
 " PYTHON - settings
 
 " JAVASCRIPT - settings
-let javaScript_fold=1
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
 " XML - settings
@@ -276,6 +305,10 @@ let g:deoplete#enable_at_startup = 1
 call deoplete#custom#source('_',  'max_menu_width', 0)
 call deoplete#custom#source('_',  'max_abbr_width', 0)
 call deoplete#custom#source('_',  'max_kind_width', 0)
+
+" PHPCD
+"let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
+"let g:deoplete#ignore_sources.php = ['omni']
 
 " ECHODOC
 let g:echodoc#enable_at_startup = 1
@@ -422,7 +455,7 @@ nmap <silent><Leader>s :Gstatus<CR>
 nmap <silent><Leader>b :MerginalToggle<CR>
 
 " TAGBAR
-nmap <silent><Leader>t <Esc>:TagbarToggle<CR>
+nmap <silent><Leader>\ <Esc>:TagbarToggle<CR>
 
 " Wrap
 nmap <silent><Leader><CR> <Esc>:call ToggleWrap()<CR>
@@ -546,13 +579,17 @@ autocmd FileType ruby           setlocal omnifunc=rubycomplete#CompleteRuby
 set completeopt=longest,menuone
 
 " Folding
-autocmd FileType javascript     setlocal foldmethod=syntax
-autocmd FileType php            setlocal foldmethod=syntax
-autocmd FileType python         setlocal foldmethod=indent
-autocmd FileType html           setlocal foldmethod=manual
-autocmd FileType xml            setlocal foldmethod=syntax
-set foldlevelstart=1
-set foldnestmax=1
+set nofoldenable
+"let php_folding=1
+"let javaScript_fold=1
+"let xml_syntax_folding=1
+"autocmd FileType javascript     setlocal foldmethod=syntax
+"autocmd FileType php            setlocal foldmethod=syntax
+"autocmd FileType python         setlocal foldmethod=indent
+"autocmd FileType html           setlocal foldmethod=manual
+"autocmd FileType xml            setlocal foldmethod=syntax
+"set foldlevelstart=1
+"set foldnestmax=1
 
 " Cursor line
 autocmd InsertEnter * set nocursorline
@@ -571,6 +608,7 @@ autocmd FocusLost * silent! :w
 autocmd BufRead,BufNewFile *.install set filetype=php
 autocmd BufRead,BufNewFile *.module set filetype=php
 autocmd BufRead,BufNewFile *.inc set filetype=php
+"autocmd BufRead * normal zR
 
 " }}}
 
@@ -633,4 +671,11 @@ endif
 " }}}
 
 
-" vim: set fdm=marker:
+"highlight Folded guibg=yellow guifg=blue
+"highlight FoldColumn guibg=yellow  guifg=white
+"hi Folded term=underline
+"hi Folded term=NONE cterm=NONE ctermbg=NONE
+hi Folded ctermbg=NONE
+
+
+
