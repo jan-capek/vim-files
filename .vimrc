@@ -61,14 +61,7 @@ NeoBundle 'tpope/vim-haml'
 
 """"""""" FOLDING
 NeoBundle 'Konfekt/FastFold'
-"NeoBundle 'tmhedberg/SimpylFold'
 "NeoBundle 'pseewald/vim-anyfold'
-"let anyfold_activate=1
-"let anyfold_fold_display = 1
-"let anyfold_identify_comments = 1
-"let anyfold_fold_comments = 1
-"hi Folded term=underline
-"hi Folded term=NONE cterm=NONE
 
 """"""""" NERDTREE
 NeoBundle 'scrooloose/nerdtree'
@@ -181,14 +174,7 @@ NeoBundle 'kristijanhusak/deoplete-phpactor'
 "NeoBundle 'lvht/phpcd.vim', { 'build': 'composer install' }
 "NeoBundle 'roxma/LanguageServer-php-neovim', { 'build': 'composer install && composer run-script parse-stubs' }
 NeoBundle 'swekaj/php-foldexpr.vim'
-"let b:phpfold_use = 1
-"let b:phpfold_text = 1
-"let b:phpfold_text_right_lines = 1
-autocmd BufRead,BufNewFile *.php,*.inc let b:phpfold_text_right_lines = 1
-autocmd BufRead,BufNewFile *.php,*.inc let b:phpfold_docblocks = 1
-autocmd BufRead,BufNewFile *.php,*.inc let b:phpfold_doc_with_funcs = 1
 "NeoBundle 'rayburgemeestre/phpfolding.vim'
-"let g:DisablePHPFoldingClass = 0
 
 """"""""" JAVASCRIPT / JSX
 NeoBundle 'pangloss/vim-javascript'
@@ -225,30 +211,10 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 let g:syntastic_auto_jump = 1
 let g:syntastic_auto_loc_list = 0
-let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
-"let g:syntastic_python_checkers=['python']
-"let g:syntastic_python_checkers=['pylint']
-let g:syntastic_python_checkers=['flake8']
-let g:syntastic_python_python_exec = 'python3'
-let g:syntastic_python_pylint_exec = 'pylint'
-"let g:syntastic_python_pylint_post_args='--disable=C0301,C0302,C0111,C0103,R0913,R0914,E301,E302'
-let g:syntastic_python_flake8_exec = 'flake8'
-let g:syntastic_python_flake8_post_args='--ignore=E301,E302,E303,E305,E501'
-let g:syntastic_javascript_checkers=['eslint', 'jshint']
-let g:syntastic_go_checkers=['go', 'golint', 'govet', 'errcheck']
 
 " ALE
 let g:ale_completion_enabled = 1
 let g:ale_set_balloons = 1
-
-" PHP
-"let php_sql_query=1
-"let php_htmlInStrings=1
-
-" PYTHON - settings
-
-" JAVASCRIPT - settings
-let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
 " XML - settings
 let g:xml_syntax_folding=1
@@ -257,6 +223,7 @@ let g:xml_syntax_folding=1
 "let g:vim_markdown_folding_disabled=1
 "let g:vim_markdown_initial_foldlevel=1
 let g:markdown_enable_spell_checking = 0
+autocmd BufRead,BufNewFile *.md setlocal linebreak
 
 " NetRw - settings
 let g:netrw_banner=0
@@ -306,10 +273,6 @@ call deoplete#custom#source('_',  'max_menu_width', 0)
 call deoplete#custom#source('_',  'max_abbr_width', 0)
 call deoplete#custom#source('_',  'max_kind_width', 0)
 
-" PHPCD
-"let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
-"let g:deoplete#ignore_sources.php = ['omni']
-
 " ECHODOC
 let g:echodoc#enable_at_startup = 1
 set noshowmode
@@ -346,6 +309,47 @@ let g:vdebug_features['max_children'] = 2048
 let g:mundo_right = 1
 let g:mundo_width = 40
 let g:mundo_preview_height = 20
+
+" ANYFOLD
+"let anyfold_activate=1
+"let anyfold_fold_display = 1
+"let anyfold_identify_comments = 1
+"let anyfold_fold_comments = 1
+
+" GOLANG
+let g:syntastic_go_checkers=['go', 'golint', 'govet', 'errcheck']
+
+" PYTHON
+"let g:syntastic_python_checkers=['python']
+"let g:syntastic_python_checkers=['pylint']
+let g:syntastic_python_checkers=['flake8']
+let g:syntastic_python_python_exec = 'python3'
+let g:syntastic_python_pylint_exec = 'pylint'
+"let g:syntastic_python_pylint_post_args='--disable=C0301,C0302,C0111,C0103,R0913,R0914,E301,E302'
+let g:syntastic_python_flake8_exec = 'flake8'
+let g:syntastic_python_flake8_post_args='--ignore=E301,E302,E303,E305,E501'
+
+
+" PHP
+"let php_sql_query=1
+"let php_htmlInStrings=1
+" php-foldexpr
+"let b:phpfold_use = 1
+"let b:phpfold_text = 1
+"let b:phpfold_text_right_lines = 1
+autocmd BufRead,BufNewFile *.php,*.inc let b:phpfold_text_right_lines = 1
+autocmd BufRead,BufNewFile *.php,*.inc let b:phpfold_docblocks = 1
+autocmd BufRead,BufNewFile *.php,*.inc let b:phpfold_doc_with_funcs = 1
+" phpfolding
+"let g:DisablePHPFoldingClass = 0
+let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
+" phpcd
+"let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
+"let g:deoplete#ignore_sources.php = ['omni']
+
+" JAVASCRIPT
+let g:syntastic_javascript_checkers=['eslint', 'jshint']
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
 
 " }}}
