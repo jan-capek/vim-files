@@ -104,8 +104,8 @@ NeoBundle 'Shougo/vimshell.vim'
 """"""""" DEOPLETE, ECHODOC
 NeoBundle 'Shougo/deoplete.nvim'
 NeoBundle 'Shougo/echodoc.vim'
-NeoBundle 'Shougo/neco-vim'
-NeoBundle 'thalesmello/webcomplete.vim'
+"NeoBundle 'Shougo/neco-vim'
+"NeoBundle 'thalesmello/webcomplete.vim'
 
 """"""""" NCM2 (will be tested later)
 "NeoBundle 'ncm2/ncm2'
@@ -223,7 +223,8 @@ let g:xml_syntax_folding=1
 "let g:vim_markdown_folding_disabled=1
 "let g:vim_markdown_initial_foldlevel=1
 let g:markdown_enable_spell_checking = 0
-autocmd BufRead,BufNewFile *.md setlocal linebreak
+"autocmd BufRead,BufNewFile *.md setlocal wrap linebreak
+autocmd FileType markdown setlocal wrap linebreak
 
 " NetRw - settings
 let g:netrw_banner=0
