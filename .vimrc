@@ -178,6 +178,7 @@ NeoBundle 'swekaj/php-foldexpr.vim'
 
 """"""""" JAVASCRIPT / JSX
 NeoBundle 'pangloss/vim-javascript'
+"NeoBundle 'isRuslan/vim-es6'
 NeoBundle 'mxw/vim-jsx'
 NeoBundle 'ternjs/tern_for_vim', { 'build': 'npm install' }
 NeoBundle 'wokalski/autocomplete-flow'
@@ -224,7 +225,7 @@ let g:xml_syntax_folding=1
 "let g:vim_markdown_initial_foldlevel=1
 let g:markdown_enable_spell_checking = 0
 "autocmd BufRead,BufNewFile *.md setlocal wrap linebreak
-autocmd FileType markdown setlocal wrap linebreak
+"autocmd FileType markdown setlocal wrap linebreak
 
 " NetRw - settings
 let g:netrw_banner=0
