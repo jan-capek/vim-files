@@ -43,10 +43,11 @@ NeoBundle 'tomasr/molokai'
 NeoBundle 'NLKNguyen/papercolor-theme'
 
 """"""""" SYNTAX HIGHLIGHTING
-NeoBundle 'chr4/nginx.vim'
-NeoBundle 'gabrielelana/vim-markdown'
-NeoBundle 'elzr/vim-json'
-NeoBundle 'elubow/cql-vim'
+NeoBundle 'sheerun/vim-polyglot'
+"NeoBundle 'chr4/nginx.vim'
+"NeoBundle 'gabrielelana/vim-markdown'
+"NeoBundle 'elzr/vim-json'
+"NeoBundle 'elubow/cql-vim'
 
 """"""""" CSS3, LESS
 NeoBundle 'hail2u/vim-css3-syntax'
