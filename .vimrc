@@ -148,11 +148,11 @@ endif
 "NeoBundle 'wkentaro/conque.vim'
 NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'FelikZ/ctrlp-py-matcher'
-NeoBundle 'Yggdroot/LeaderF'
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 let g:ctrlp_match_window = 'top,order:ttb,min:120,max:120,results:120'
+NeoBundle 'Yggdroot/LeaderF'
 
 """"""""" DEOPLETE, ECHODOC
 NeoBundle 'Shougo/deoplete.nvim'
@@ -376,7 +376,12 @@ nmap <silent><Leader>x :PrettyXML<CR>
 "call denite#custom#source('file/rec', 'matchers', ['matcher/substring'])
 "nnoremap <silent><leader>; :<C-u>Denite -split=no file_mru<cr>
 "nnoremap <silent><leader>/ :<C-u>Denite -split=no file/rec<cr>
-nmap <silent><Leader>r <Esc>:CtrlPMRUFiles<CR>
+
+" DENITE
+"nmap <silent><Leader>r <Esc>:CtrlPMRUFiles<CR>
+
+" LEADERF
+nmap <silent><Leader>r <Esc>:LeaderfMru<CR>
 
 " DEOPLETE
 call deoplete#custom#source('_',  'max_menu_width', 0)
