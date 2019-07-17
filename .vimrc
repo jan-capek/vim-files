@@ -1,4 +1,4 @@
-" PLUGINS --------------------------------------------------------------------
+" PLUGINS & SETTING ----------------------------------------------------------
 " {{{
 
 " Note: Skip initialization for vim-tiny or vim-small.
@@ -28,6 +28,20 @@ endif
 " Refer to |:NeoBundle-examples|.
 " Note: You don't set neobundle setting in .gvimrc!
 
+""""""""" NETRW - settings
+let g:netrw_banner=0
+let g:netrw_keepdir=0
+let g:netrw_liststyle=0
+let g:netrw_alto=&sb
+let g:netrw_altv=&spr
+let g:netrw_preview=1
+let g:netrw_browse_split=4
+let g:netrw_winsize=-132
+let g:netrw_silent=1
+"let g:netrw_quiet=1
+"let g:netrw_use_errorwindow=1
+"set autochdir
+
 """"""""" EDITORCONFIG
 NeoBundle 'editorconfig/editorconfig-vim'
 
@@ -48,6 +62,7 @@ NeoBundle 'sheerun/vim-polyglot'
 "NeoBundle 'gabrielelana/vim-markdown'
 "NeoBundle 'elzr/vim-json'
 "NeoBundle 'elubow/cql-vim'
+"let g:markdown_enable_spell_checking = 0
 
 """"""""" CSS3, LESS
 NeoBundle 'hail2u/vim-css3-syntax'
@@ -63,21 +78,51 @@ NeoBundle 'tpope/vim-haml'
 """"""""" FOLDING
 NeoBundle 'Konfekt/FastFold'
 "NeoBundle 'pseewald/vim-anyfold'
+"let anyfold_activate=1
+"let anyfold_fold_display = 1
+"let anyfold_identify_comments = 1
+"let anyfold_fold_comments = 1
+
+""""""""" BBYE
+"NeoBundle 'moll/vim-bbye'
+
 
 """"""""" NERDTREE
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'vim-scripts/Toggle-NERDTree-width'
+let g:NERDTreeWinSize=40
+let g:NERDTreeShowBookmarks=1
+let g:NERDTreeIgnore = ['\.pyc$']
+let g:NERDTreeDirArrows = 0
+"let NERDTreeQuitOnOpen = 1
+"autocmd VimEnter * NERDTree
 
 """"""""" NERDCOMMENTER
 NeoBundle 'scrooloose/nerdcommenter'
 
 """"""""" TAGBAR
 NeoBundle 'majutsushi/tagbar'
+let g:tagbar_width = 40
+let g:tagbar_left = 0
+let g:tagbar_sort = 0
 
 """"""""" AIRLINE, POWERLINE FONTS
 NeoBundle 'vim-airline/vim-airline'
 NeoBundle 'vim-airline/vim-airline-themes'
 NeoBundle 'Lokaltog/powerline-fonts'
+"let g:airline_powerline_fonts = 1
+"let g:airline_theme = 'powerlineish'
+let g:airline_theme = 'light'
+"let g:airline_solarized_bg='light'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
+let g:airline#extensions#tabline#show_tab_nr = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+"let g:airline#extensions#tabline#left_sep = ' '
+"let g:airline#extensions#tabline#left_alt_sep = '|'
+"let g:airline#extensions#tabline#show_buffers = 0
+"let g:airline_section_z =
 
 """"""""" AUTO-PAIRS, MATCHIT, MATCHTAG
 NeoBundle 'jiangmiao/auto-pairs'
@@ -94,19 +139,30 @@ if !has('nvim')
 endif
 
 """"""""" DENITE, NEOMRU, NEOSSH, DEFX, VIMSHELL
-NeoBundle 'Shougo/denite.nvim'
-NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'Shougo/neossh.vim'
-NeoBundle 'Shougo/defx.nvim'
-NeoBundle 'Shougo/vimshell.vim'
+"NeoBundle 'Shougo/denite.nvim'
+"NeoBundle 'Shougo/neomru.vim'
+"NeoBundle 'Shougo/neossh.vim'
+"NeoBundle 'Shougo/defx.nvim'
+"NeoBundle 'Shougo/vimshell.vim'
 "NeoBundle 'oplatek/Conque-Shell'
 "NeoBundle 'wkentaro/conque.vim'
+NeoBundle 'ctrlpvim/ctrlp.vim'
+NeoBundle 'FelikZ/ctrlp-py-matcher'
+NeoBundle 'Yggdroot/LeaderF'
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+let g:ctrlp_match_window = 'top,order:ttb,min:120,max:120,results:120'
 
 """"""""" DEOPLETE, ECHODOC
 NeoBundle 'Shougo/deoplete.nvim'
 NeoBundle 'Shougo/echodoc.vim'
 "NeoBundle 'Shougo/neco-vim'
 "NeoBundle 'thalesmello/webcomplete.vim'
+let g:deoplete#enable_at_startup = 1
+let g:echodoc#enable_at_startup = 1
+set noshowmode
+set cmdheight=2
 
 """"""""" NCM2 (will be tested later)
 "NeoBundle 'ncm2/ncm2'
@@ -120,10 +176,30 @@ NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'mattn/emmet-vim'
 "NeoBundle 'tristen/vim-sparkup'
+let g:neosnippet#enable_snipmate_compatibility = 1
+let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+let g:neosnippet#enable_completed_snippet = 1
 
 """"""""" SYNTASTIC, ALE (Asynchronous Lint Engine)
 NeoBundle 'scrooloose/syntastic'
+"let g:syntastic_disabled_filetypes=['html']
+"let g:syntastic_enable_signs=1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+let g:syntastic_auto_jump = 1
+let g:syntastic_auto_loc_list = 0
 "NeoBundle 'w0rp/ale'
+"let g:ale_completion_enabled = 1
+"let g:ale_set_balloons = 1
+let g:syntastic_go_checkers=['go', 'golint', 'govet', 'errcheck']
+let g:syntastic_python_checkers=['flake8']
+let g:syntastic_python_python_exec = 'python3'
+let g:syntastic_python_pylint_exec = 'pylint'
+"let g:syntastic_python_pylint_post_args='--disable=C0301,C0302,C0111,C0103,R0913,R0914,E301,E302'
+let g:syntastic_python_flake8_exec = 'flake8'
+let g:syntastic_python_flake8_post_args='--ignore=E301,E302,E303,E305,E501'
+let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
+let g:syntastic_javascript_checkers=['eslint', 'jshint']
 
 """"""""" DIRDIFF
 NeoBundle 'vim-scripts/DirDiff.vim'
@@ -137,9 +213,13 @@ NeoBundle 'airblade/vim-gitgutter'
 
 """"""""" XML
 NeoBundle 'sukima/xmledit'
+let g:xml_syntax_folding=1
 
 """"""""" MUNDO - undo tree
 NeoBundle 'simnalamburt/vim-mundo'
+let g:mundo_right = 1
+let g:mundo_width = 40
+let g:mundo_preview_height = 20
 
 """"""""" VIM-EXTRAS
 NeoBundle 'jan-capek/vim-extras'
@@ -152,6 +232,20 @@ NeoBundle 'jan-capek/vim-extras'
 "NeoBundle 'calendar%52'
 "NeoBundle 'cosminadrianpopescu/vim-sql-workbench'
 "NeoBundle 'joonty/vdebug'
+let g:vdebug_options = {}
+let g:vdebug_options['server'] = "localhost"
+let g:vdebug_options['port'] = 9999
+let g:vdebug_options["ide_key"] = "VDEBUG"
+let g:vdebug_options["break_on_open"] = 0
+"let g:vdebug_options['timeout'] = 60
+let g:vdebug_options["watch_window_style"] = "compact"
+let g:vdebug_options["debug_window_level"] = 2
+"let g:vdebug_options["continuous_mode"] = 1
+"let g:vdebug_options['path_maps'] = { "/home/mmdelivery/www": "/Users/hans/Remotes/ran-mmdelivery/www" }
+
+let g:vdebug_features = {}
+let g:vdebug_features['max_depth'] = 2048
+let g:vdebug_features['max_children'] = 2048
 " https://www.youtube.com/watch?v=5mtY5HQeVaw
 
 """"""""" GOLANG
@@ -181,8 +275,12 @@ NeoBundle 'swekaj/php-foldexpr.vim'
 NeoBundle 'pangloss/vim-javascript'
 "NeoBundle 'isRuslan/vim-es6'
 NeoBundle 'mxw/vim-jsx'
-NeoBundle 'ternjs/tern_for_vim', { 'build': 'npm install' }
-NeoBundle 'wokalski/autocomplete-flow'
+let g:jsx_ext_required = 1 " Allow JSX in normal JS files
+"NeoBundle 'ternjs/tern_for_vim', { 'build': 'npm install' }
+NeoBundle 'carlitux/deoplete-ternjs', { 'build': 'npm install -g tern' }
+"NeoBundle 'wokalski/autocomplete-flow'
+"NeoBundle 'steelsojka/deoplete-flow'
+NeoBundle 'carlitux/deoplete-flow'
 
 """"""""" TYPESCRIPT
 NeoBundle 'leafgarland/typescript-vim'
@@ -198,161 +296,6 @@ filetype plugin indent on
 " this will conveniently prompt you to install them.
 NeoBundleCheck
 
-
-
-" }}}
-
-" PLUGINS SETTING ------------------------------------------------------------
-" {{{
-
-
-" SYNTASTIC
-"let g:syntastic_disabled_filetypes=['html']
-"let g:syntastic_enable_signs=1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-let g:syntastic_auto_jump = 1
-let g:syntastic_auto_loc_list = 0
-
-" ALE
-let g:ale_completion_enabled = 1
-let g:ale_set_balloons = 1
-
-" XML - settings
-let g:xml_syntax_folding=1
-
-" MARKDOWN
-"let g:vim_markdown_folding_disabled=1
-"let g:vim_markdown_initial_foldlevel=1
-let g:markdown_enable_spell_checking = 0
-"autocmd BufRead,BufNewFile *.md setlocal wrap linebreak
-"autocmd FileType markdown setlocal wrap linebreak
-
-" NetRw - settings
-let g:netrw_banner=0
-let g:netrw_keepdir=0
-let g:netrw_liststyle=0
-let g:netrw_alto=&sb
-let g:netrw_altv=&spr
-let g:netrw_preview=1
-let g:netrw_browse_split=4
-let g:netrw_winsize=-132
-let g:netrw_silent=1
-"let g:netrw_quiet=1
-"let g:netrw_use_errorwindow=1
-"set autochdir
-
-" NERDTree
-let g:NERDTreeWinSize=40
-let g:NERDTreeShowBookmarks=1
-let g:NERDTreeIgnore = ['\.pyc$']
-let g:NERDTreeDirArrows = 0
-"let NERDTreeQuitOnOpen = 1
-"autocmd VimEnter * NERDTree
-
-" Tagbar
-let g:tagbar_width = 40
-let g:tagbar_left = 0
-let g:tagbar_sort = 0
-
-" AIRLINE
-"let g:airline_powerline_fonts = 1
-"let g:airline_theme = 'powerlineish'
-let g:airline_theme = 'light'
-"let g:airline_solarized_bg='light'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
-let g:airline#extensions#tabline#show_tab_nr = 1
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-"let g:airline#extensions#tabline#left_sep = ' '
-"let g:airline#extensions#tabline#left_alt_sep = '|'
-"let g:airline#extensions#tabline#show_buffers = 0
-"let g:airline_section_z =
-
-" DEOPLETE
-let g:deoplete#enable_at_startup = 1
-call deoplete#custom#source('_',  'max_menu_width', 0)
-call deoplete#custom#source('_',  'max_abbr_width', 0)
-call deoplete#custom#source('_',  'max_kind_width', 0)
-
-" ECHODOC
-let g:echodoc#enable_at_startup = 1
-set noshowmode
-set cmdheight=2
-
-" NEOSNIPPET
-let g:neosnippet#enable_snipmate_compatibility = 1
-let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
-let g:neosnippet#enable_completed_snippet = 1
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-" CONQUETERM
-"let g:ConqueTerm_Color = 1
-
-" VDEBUG
-let g:vdebug_options = {}
-let g:vdebug_options['server'] = "localhost"
-let g:vdebug_options['port'] = 9999
-let g:vdebug_options["ide_key"] = "VDEBUG"
-let g:vdebug_options["break_on_open"] = 0
-"let g:vdebug_options['timeout'] = 60
-let g:vdebug_options["watch_window_style"] = "compact"
-let g:vdebug_options["debug_window_level"] = 2
-"let g:vdebug_options["continuous_mode"] = 1
-"let g:vdebug_options['path_maps'] = { "/home/mmdelivery/www": "/Users/hans/Remotes/ran-mmdelivery/www" }
-
-let g:vdebug_features = {}
-let g:vdebug_features['max_depth'] = 2048
-let g:vdebug_features['max_children'] = 2048
-
-" MUNDO
-let g:mundo_right = 1
-let g:mundo_width = 40
-let g:mundo_preview_height = 20
-
-" ANYFOLD
-"let anyfold_activate=1
-"let anyfold_fold_display = 1
-"let anyfold_identify_comments = 1
-"let anyfold_fold_comments = 1
-
-" GOLANG
-let g:syntastic_go_checkers=['go', 'golint', 'govet', 'errcheck']
-
-" PYTHON
-"let g:syntastic_python_checkers=['python']
-"let g:syntastic_python_checkers=['pylint']
-let g:syntastic_python_checkers=['flake8']
-let g:syntastic_python_python_exec = 'python3'
-let g:syntastic_python_pylint_exec = 'pylint'
-"let g:syntastic_python_pylint_post_args='--disable=C0301,C0302,C0111,C0103,R0913,R0914,E301,E302'
-let g:syntastic_python_flake8_exec = 'flake8'
-let g:syntastic_python_flake8_post_args='--ignore=E301,E302,E303,E305,E501'
-
-
-" PHP
-"let php_sql_query=1
-"let php_htmlInStrings=1
-" php-foldexpr
-"let b:phpfold_use = 1
-"let b:phpfold_text = 1
-"let b:phpfold_text_right_lines = 1
-autocmd BufRead,BufNewFile *.php,*.inc let b:phpfold_text_right_lines = 1
-autocmd BufRead,BufNewFile *.php,*.inc let b:phpfold_docblocks = 1
-autocmd BufRead,BufNewFile *.php,*.inc let b:phpfold_doc_with_funcs = 1
-" phpfolding
-"let g:DisablePHPFoldingClass = 0
-let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
-" phpcd
-"let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
-"let g:deoplete#ignore_sources.php = ['omni']
-
-" JAVASCRIPT
-let g:syntastic_javascript_checkers=['eslint', 'jshint']
-let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
 
 " }}}
@@ -396,7 +339,7 @@ nmap <silent><leader>8 <Plug>AirlineSelectTab8
 nmap <silent><leader>9 <Plug>AirlineSelectTab9
 
 " replace without yanking in visial mode
-vmap r "_dhp
+"vmap r "_dhp
 
 " EASYMOTION
 map <silent><Space> <Plug>(easymotion-s)
@@ -420,19 +363,37 @@ nmap <silent><Leader>- :diffoff!<CR>
 " pretty xml
 nmap <silent><Leader>x :PrettyXML<CR>
 
+" MARKDOWN
+"let g:vim_markdown_folding_disabled=1
+"let g:vim_markdown_initial_foldlevel=1
+"autocmd BufRead,BufNewFile *.md setlocal wrap linebreak
+"autocmd FileType markdown setlocal wrap linebreak
+
 " DENITE
-call denite#custom#map('insert', '<Down>', '<denite:move_to_next_line>', 'noremap')
-call denite#custom#map('insert', '<Up>', '<denite:move_to_previous_line>', 'noremap')
-call denite#custom#source('file_mru', 'matchers', ['matcher/substring'])
-call denite#custom#source('file/rec', 'matchers', ['matcher/substring'])
-nnoremap <silent><leader>; :<C-u>Denite -split=no file_mru<cr>
-nnoremap <silent><leader>/ :<C-u>Denite -split=no file/rec<cr>
+"call denite#custom#map('insert', '<Down>', '<denite:move_to_next_line>', 'noremap')
+"call denite#custom#map('insert', '<Up>', '<denite:move_to_previous_line>', 'noremap')
+"call denite#custom#source('file_mru', 'matchers', ['matcher/substring'])
+"call denite#custom#source('file/rec', 'matchers', ['matcher/substring'])
+"nnoremap <silent><leader>; :<C-u>Denite -split=no file_mru<cr>
+"nnoremap <silent><leader>/ :<C-u>Denite -split=no file/rec<cr>
+nmap <silent><Leader>r <Esc>:CtrlPMRUFiles<CR>
+
+" DEOPLETE
+call deoplete#custom#source('_',  'max_menu_width', 0)
+call deoplete#custom#source('_',  'max_abbr_width', 0)
+call deoplete#custom#source('_',  'max_kind_width', 0)
+
+" NEOSNIPPET
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
 
 " NERDTree & NetRw
 nmap <silent><Leader><TAB> :NERDTreeToggle<CR>
 
 " DEFX
-nmap <silent><Leader>f :Defx<CR>
+"nmap <silent><Leader>f :Defx<CR>
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
     " Define mappings
@@ -505,6 +466,7 @@ set noeb
 set t_vb=
 set mouse=a
 set backspace=indent,eol,start
+hi Folded ctermbg=NONE
 "set cm=blowfish2
 "set autowriteall
 "colorscheme tir_black
@@ -611,11 +573,28 @@ autocmd FileType php,js,python,ruby,sh,vim,vimrc,twig,xml,html,yml,css,json auto
 " Auto save file when focus is lost
 autocmd FocusLost * silent! :w
 
-" Drupal 7 quirks
+" Drupal quirks
 autocmd BufRead,BufNewFile *.install set filetype=php
 autocmd BufRead,BufNewFile *.module set filetype=php
 autocmd BufRead,BufNewFile *.inc set filetype=php
 "autocmd BufRead * normal zR
+
+" PHP
+"let php_sql_query=1
+"let php_htmlInStrings=1
+" php-foldexpr
+"let b:phpfold_use = 1
+"let b:phpfold_text = 1
+"let b:phpfold_text_right_lines = 1
+autocmd BufRead,BufNewFile *.php,*.inc let b:phpfold_text_right_lines = 1
+autocmd BufRead,BufNewFile *.php,*.inc let b:phpfold_docblocks = 1
+autocmd BufRead,BufNewFile *.php,*.inc let b:phpfold_doc_with_funcs = 1
+" phpfolding
+"let g:DisablePHPFoldingClass = 0
+" phpcd
+"let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
+"let g:deoplete#ignore_sources.php = ['omni']
+
 
 " }}}
 
@@ -682,7 +661,6 @@ endif
 "highlight FoldColumn guibg=yellow  guifg=white
 "hi Folded term=underline
 "hi Folded term=NONE cterm=NONE ctermbg=NONE
-hi Folded ctermbg=NONE
 
 
 
