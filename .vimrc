@@ -155,17 +155,17 @@ let g:ctrlp_match_window = 'top,order:ttb,min:120,max:120,results:120'
 NeoBundle 'Yggdroot/LeaderF'
 
 """"""""" DEOPLETE, ECHODOC
-NeoBundle 'Shougo/deoplete.nvim'
-NeoBundle 'Shougo/echodoc.vim'
+"NeoBundle 'Shougo/deoplete.nvim'
+"NeoBundle 'Shougo/echodoc.vim'
 "NeoBundle 'Shougo/neco-vim'
 "NeoBundle 'thalesmello/webcomplete.vim'
-let g:deoplete#enable_at_startup = 1
-let g:echodoc#enable_at_startup = 1
-set noshowmode
-set cmdheight=2
+"let g:deoplete#enable_at_startup = 1
+"let g:echodoc#enable_at_startup = 1
+"set noshowmode
+"set cmdheight=2
 
 """"""""" NCM2 (will be tested later)
-"NeoBundle 'ncm2/ncm2'
+NeoBundle 'ncm2/ncm2'
 
 """"""""" LANGUAGE SERVER (CLIENT)
 "NeoBundle 'autozimu/LanguageClient-neovim', { 'rev' : 'next',  'build': 'bash install.sh' }
@@ -250,12 +250,12 @@ let g:vdebug_features['max_children'] = 2048
 
 """"""""" GOLANG
 NeoBundle 'fatih/vim-go'
-NeoBundle 'zchee/deoplete-go', { 'build': 'make' }
+"NeoBundle 'zchee/deoplete-go', { 'build': 'make' }
 "NeoBundle 'garyburd/go-explorer'
 
 """"""""" PYTHON
 NeoBundle 'davidhalter/jedi-vim'
-NeoBundle 'zchee/deoplete-jedi'
+"NeoBundle 'zchee/deoplete-jedi'
 NeoBundle 'jmcantrell/vim-virtualenv'
 NeoBundle 'Glench/Vim-Jinja2-Syntax'
 "NeoBundle 'lepture/vim-jinja'
@@ -265,7 +265,7 @@ NeoBundle 'tmhedberg/SimpylFold'
 
 """"""""" PHP
 NeoBundle 'phpactor/phpactor',{ 'build': 'composer install' }
-NeoBundle 'kristijanhusak/deoplete-phpactor'
+"NeoBundle 'kristijanhusak/deoplete-phpactor'
 "NeoBundle 'lvht/phpcd.vim', { 'build': 'composer install' }
 "NeoBundle 'roxma/LanguageServer-php-neovim', { 'build': 'composer install && composer run-script parse-stubs' }
 NeoBundle 'swekaj/php-foldexpr.vim'
@@ -277,10 +277,10 @@ NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'mxw/vim-jsx'
 let g:jsx_ext_required = 1 " Allow JSX in normal JS files
 "NeoBundle 'ternjs/tern_for_vim', { 'build': 'npm install' }
-NeoBundle 'carlitux/deoplete-ternjs', { 'build': 'npm install -g tern' }
+"NeoBundle 'carlitux/deoplete-ternjs', { 'build': 'npm install -g tern' }
 "NeoBundle 'wokalski/autocomplete-flow'
 "NeoBundle 'steelsojka/deoplete-flow'
-NeoBundle 'carlitux/deoplete-flow'
+"NeoBundle 'carlitux/deoplete-flow'
 
 """"""""" TYPESCRIPT
 NeoBundle 'leafgarland/typescript-vim'
@@ -384,9 +384,9 @@ nmap <silent><Leader>x :PrettyXML<CR>
 nmap <silent><Leader>r <Esc>:LeaderfMru<CR>
 
 " DEOPLETE
-call deoplete#custom#source('_',  'max_menu_width', 0)
-call deoplete#custom#source('_',  'max_abbr_width', 0)
-call deoplete#custom#source('_',  'max_kind_width', 0)
+"call deoplete#custom#source('_',  'max_menu_width', 0)
+"call deoplete#custom#source('_',  'max_abbr_width', 0)
+"call deoplete#custom#source('_',  'max_kind_width', 0)
 
 " NEOSNIPPET
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
