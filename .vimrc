@@ -65,8 +65,9 @@ NeoBundle 'sheerun/vim-polyglot'
 "let g:markdown_enable_spell_checking = 0
 
 """"""""" CSS3, LESS
-NeoBundle 'hail2u/vim-css3-syntax'
-NeoBundle 'skammer/vim-css-color'
+"NeoBundle 'hail2u/vim-css3-syntax'
+"NeoBundle 'lepture/vim-css'
+"NeoBundle 'skammer/vim-css-color'
 " use new Colorizer
 "NeoBundle 'chrisbra/Colorizer'
 "NeoBundle 'groenewege/vim-less'
@@ -84,7 +85,10 @@ NeoBundle 'Konfekt/FastFold'
 "let anyfold_fold_comments = 1
 
 """"""""" BBYE
-"NeoBundle 'moll/vim-bbye'
+NeoBundle 'moll/vim-bbye'
+
+""""""""" LINE WRAP
+"NeoBundle 'bronson/vim-toggle-wrap'
 
 
 """"""""" NERDTREE
@@ -92,7 +96,7 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'vim-scripts/Toggle-NERDTree-width'
 let g:NERDTreeWinSize=40
 let g:NERDTreeShowBookmarks=1
-let g:NERDTreeIgnore = ['\.pyc$']
+"let g:NERDTreeIgnore = ['\.pyc$']
 let g:NERDTreeDirArrows = 0
 "let NERDTreeQuitOnOpen = 1
 "autocmd VimEnter * NERDTree
@@ -133,52 +137,39 @@ NeoBundle 'gregsexton/MatchTag'
 NeoBundle 'Lokaltog/vim-easymotion'
 
 """"""""" VIM8 compatibility layer
-if !has('nvim')
-    NeoBundle 'roxma/nvim-yarp'
-    NeoBundle 'roxma/vim-hug-neovim-rpc'
-endif
+NeoBundle 'roxma/nvim-yarp'
+NeoBundle 'roxma/vim-hug-neovim-rpc'
 
-""""""""" DENITE, NEOMRU, NEOSSH, DEFX, VIMSHELL
-"NeoBundle 'Shougo/denite.nvim'
-"NeoBundle 'Shougo/neomru.vim'
-"NeoBundle 'Shougo/neossh.vim'
-"NeoBundle 'Shougo/defx.nvim'
+""""""""" SHELL
 "NeoBundle 'Shougo/vimshell.vim'
 "NeoBundle 'oplatek/Conque-Shell'
 "NeoBundle 'wkentaro/conque.vim'
-NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'FelikZ/ctrlp-py-matcher'
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-let g:ctrlp_match_window = 'top,order:ttb,min:120,max:120,results:120'
+
+""""""""" CTRLP, LEADERF
+"NeoBundle 'ctrlpvim/ctrlp.vim'
+"NeoBundle 'FelikZ/ctrlp-py-matcher'
+"let g:ctrlp_map = '<c-p>'
+"let g:ctrlp_cmd = 'CtrlP'
+"let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+"let g:ctrlp_match_window = 'top,order:ttb,min:120,max:120,results:120'
 NeoBundle 'Yggdroot/LeaderF'
 
-""""""""" DEOPLETE, ECHODOC
-"NeoBundle 'Shougo/deoplete.nvim'
-"NeoBundle 'Shougo/echodoc.vim'
-"NeoBundle 'Shougo/neco-vim'
-"NeoBundle 'thalesmello/webcomplete.vim'
-"let g:deoplete#enable_at_startup = 1
-"let g:echodoc#enable_at_startup = 1
-"set noshowmode
-"set cmdheight=2
-
-""""""""" NCM2 (will be tested later)
+""""""""" NCM2
 NeoBundle 'ncm2/ncm2'
+NeoBundle 'ncm2/ncm2-bufword'
+NeoBundle 'ncm2/ncm2-path'
+NeoBundle 'ncm2/ncm2-vim'
+NeoBundle 'ncm2/ncm2-cssomni'
 
 """"""""" LANGUAGE SERVER (CLIENT)
 "NeoBundle 'autozimu/LanguageClient-neovim', { 'rev' : 'next',  'build': 'bash install.sh' }
 
-""""""""" NEOSNIPPET, SNIPPETS, EMMET
-NeoBundle 'Shougo/neosnippet.vim'
-NeoBundle 'Shougo/neosnippet-snippets'
+""""""""" ULTISNIP, EMMET
+NeoBundle 'SirVer/ultisnips'
+NeoBundle 'ncm2/ncm2-ultisnips'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'mattn/emmet-vim'
-"NeoBundle 'tristen/vim-sparkup'
-let g:neosnippet#enable_snipmate_compatibility = 1
-let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
-let g:neosnippet#enable_completed_snippet = 1
+"NeoBundle 'rstacruz/sparkup'
 
 """"""""" SYNTASTIC, ALE (Asynchronous Lint Engine)
 NeoBundle 'scrooloose/syntastic'
@@ -231,6 +222,8 @@ NeoBundle 'jan-capek/vim-extras'
 "NeoBundle 'vimoutliner/vimoutliner'
 "NeoBundle 'calendar%52'
 "NeoBundle 'cosminadrianpopescu/vim-sql-workbench'
+
+""""""""" VDEBUG
 "NeoBundle 'joonty/vdebug'
 let g:vdebug_options = {}
 let g:vdebug_options['server'] = "localhost"
@@ -249,30 +242,32 @@ let g:vdebug_features['max_children'] = 2048
 " https://www.youtube.com/watch?v=5mtY5HQeVaw
 
 """"""""" GOLANG
-NeoBundle 'fatih/vim-go'
+"NeoBundle 'fatih/vim-go'
+NeoBundle 'ncm2/ncm2-go'
 "NeoBundle 'zchee/deoplete-go', { 'build': 'make' }
 "NeoBundle 'garyburd/go-explorer'
 
 """"""""" PYTHON
-NeoBundle 'davidhalter/jedi-vim'
+"NeoBundle 'davidhalter/jedi-vim'
 "NeoBundle 'zchee/deoplete-jedi'
+NeoBundle 'ncm2/ncm2-jedi'
 NeoBundle 'jmcantrell/vim-virtualenv'
-NeoBundle 'Glench/Vim-Jinja2-Syntax'
+"NeoBundle 'Glench/Vim-Jinja2-Syntax'
 "NeoBundle 'lepture/vim-jinja'
 "NeoBundle 'ivanov/vim-ipython'
 "NeoBundle 'clericJ/pyinteractive-vim'
-NeoBundle 'tmhedberg/SimpylFold'
+"NeoBundle 'tmhedberg/SimpylFold'
 
 """"""""" PHP
 NeoBundle 'phpactor/phpactor',{ 'build': 'composer install' }
-"NeoBundle 'kristijanhusak/deoplete-phpactor'
+NeoBundle 'phpactor/ncm2-phpactor'
 "NeoBundle 'lvht/phpcd.vim', { 'build': 'composer install' }
 "NeoBundle 'roxma/LanguageServer-php-neovim', { 'build': 'composer install && composer run-script parse-stubs' }
 NeoBundle 'swekaj/php-foldexpr.vim'
 "NeoBundle 'rayburgemeestre/phpfolding.vim'
 
 """"""""" JAVASCRIPT / JSX
-NeoBundle 'pangloss/vim-javascript'
+"NeoBundle 'pangloss/vim-javascript'
 "NeoBundle 'isRuslan/vim-es6'
 NeoBundle 'mxw/vim-jsx'
 let g:jsx_ext_required = 1 " Allow JSX in normal JS files
@@ -281,10 +276,11 @@ let g:jsx_ext_required = 1 " Allow JSX in normal JS files
 "NeoBundle 'wokalski/autocomplete-flow'
 "NeoBundle 'steelsojka/deoplete-flow'
 "NeoBundle 'carlitux/deoplete-flow'
+NeoBundle 'ncm2/ncm2-tern',{ 'build': 'npm install' }
 
 """"""""" TYPESCRIPT
-NeoBundle 'leafgarland/typescript-vim'
-NeoBundle 'Quramy/tsuquyomi'
+"NeoBundle 'leafgarland/typescript-vim'
+"NeoBundle 'Quramy/tsuquyomi'
 
 
 call neobundle#end()
@@ -316,7 +312,8 @@ nmap <silent><Leader>q <Esc>:q<CR>
 " BUFFER SWITCHING, DELETING
 nmap <silent>\ :bnext<CR>
 nmap <silent>\| :bprev<CR>
-nmap <silent><Leader>. :call BufferDelete()<CR>
+"nmap <silent><Leader>. :call BufferDelete()<CR>
+nmap <silent><Leader>. :Bdelete<CR>
 
 " Moving around through wrapped lines in normal mode
 nnoremap <expr> j v:count ? 'j' : 'gj'
@@ -388,6 +385,9 @@ nmap <silent><Leader>r <Esc>:LeaderfMru<CR>
 "call deoplete#custom#source('_',  'max_abbr_width', 0)
 "call deoplete#custom#source('_',  'max_kind_width', 0)
 
+" NCM2
+autocmd BufEnter * call ncm2#enable_for_buffer()
+
 " NEOSNIPPET
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -398,7 +398,7 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 nmap <silent><Leader><TAB> :NERDTreeToggle<CR>
 
 " DEFX
-"nmap <silent><Leader>f :Defx<CR>
+nmap <silent><Leader>e :Defx<CR>
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
     " Define mappings
@@ -551,6 +551,7 @@ autocmd FileType xml            setlocal omnifunc=xmlcomplete#CompleteTags
 "autocmd FileType php            setlocal omnifunc=phpcomplete_extended#CompletePHP
 autocmd FileType ruby           setlocal omnifunc=rubycomplete#CompleteRuby
 set completeopt=longest,menuone
+set completeopt=noinsert,menuone,noselect
 
 " Folding
 set nofoldenable
