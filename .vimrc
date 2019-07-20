@@ -379,6 +379,7 @@ nmap <silent><Leader>x :PrettyXML<CR>
 
 " LEADERF
 nmap <silent><Leader>r <Esc>:LeaderfMru<CR>
+nmap <silent><Leader>' <Esc>:LeaderfRgInteractive<CR>
 
 " DEOPLETE
 "call deoplete#custom#source('_',  'max_menu_width', 0)
