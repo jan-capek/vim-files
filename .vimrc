@@ -36,7 +36,7 @@ let g:netrw_alto=&sb
 let g:netrw_altv=&spr
 let g:netrw_preview=1
 let g:netrw_browse_split=4
-let g:netrw_winsize=-132
+let g:netrw_winsize=40
 let g:netrw_silent=1
 "let g:netrw_quiet=1
 "let g:netrw_use_errorwindow=1
@@ -155,24 +155,27 @@ NeoBundle 'roxma/vim-hug-neovim-rpc'
 NeoBundle 'Yggdroot/LeaderF'
 
 """"""""" NCM2
-NeoBundle 'ncm2/ncm2'
-NeoBundle 'ncm2/ncm2-bufword'
-NeoBundle 'ncm2/ncm2-path'
-NeoBundle 'ncm2/ncm2-vim'
-NeoBundle 'ncm2/ncm2-cssomni'
+"NeoBundle 'ncm2/ncm2'
+"NeoBundle 'ncm2/ncm2-bufword'
+"NeoBundle 'ncm2/ncm2-path'
+"NeoBundle 'ncm2/ncm2-vim'
+"NeoBundle 'ncm2/ncm2-cssomni'
+
+""""""""" COC
+NeoBundle 'neoclide/coc.nvim', 'release', { 'build': { 'others': 'git checkout release' } }
 
 """"""""" LANGUAGE SERVER (CLIENT)
 "NeoBundle 'autozimu/LanguageClient-neovim', { 'rev' : 'next',  'build': 'bash install.sh' }
 
 """"""""" ULTISNIP, EMMET
-NeoBundle 'SirVer/ultisnips'
-NeoBundle 'ncm2/ncm2-ultisnips'
-NeoBundle 'honza/vim-snippets'
-NeoBundle 'mattn/emmet-vim'
+"NeoBundle 'SirVer/ultisnips'
+"NeoBundle 'ncm2/ncm2-ultisnips'
+"NeoBundle 'honza/vim-snippets'
+"NeoBundle 'mattn/emmet-vim'
 "NeoBundle 'rstacruz/sparkup'
 
 """"""""" SYNTASTIC, ALE (Asynchronous Lint Engine)
-NeoBundle 'scrooloose/syntastic'
+"NeoBundle 'scrooloose/syntastic'
 "let g:syntastic_disabled_filetypes=['html']
 "let g:syntastic_enable_signs=1
 let g:syntastic_check_on_open = 1
@@ -243,14 +246,14 @@ let g:vdebug_features['max_children'] = 2048
 
 """"""""" GOLANG
 "NeoBundle 'fatih/vim-go'
-NeoBundle 'ncm2/ncm2-go'
+"NeoBundle 'ncm2/ncm2-go'
 "NeoBundle 'zchee/deoplete-go', { 'build': 'make' }
 "NeoBundle 'garyburd/go-explorer'
 
 """"""""" PYTHON
 "NeoBundle 'davidhalter/jedi-vim'
 "NeoBundle 'zchee/deoplete-jedi'
-NeoBundle 'ncm2/ncm2-jedi'
+"NeoBundle 'ncm2/ncm2-jedi'
 NeoBundle 'jmcantrell/vim-virtualenv'
 "NeoBundle 'Glench/Vim-Jinja2-Syntax'
 "NeoBundle 'lepture/vim-jinja'
@@ -259,8 +262,8 @@ NeoBundle 'jmcantrell/vim-virtualenv'
 "NeoBundle 'tmhedberg/SimpylFold'
 
 """"""""" PHP
-NeoBundle 'phpactor/phpactor',{ 'build': 'composer install' }
-NeoBundle 'phpactor/ncm2-phpactor'
+"NeoBundle 'phpactor/phpactor',{ 'build': 'composer install' }
+"NeoBundle 'phpactor/ncm2-phpactor'
 "NeoBundle 'lvht/phpcd.vim', { 'build': 'composer install' }
 "NeoBundle 'roxma/LanguageServer-php-neovim', { 'build': 'composer install && composer run-script parse-stubs' }
 NeoBundle 'swekaj/php-foldexpr.vim'
@@ -276,7 +279,7 @@ let g:jsx_ext_required = 1 " Allow JSX in normal JS files
 "NeoBundle 'wokalski/autocomplete-flow'
 "NeoBundle 'steelsojka/deoplete-flow'
 "NeoBundle 'carlitux/deoplete-flow'
-NeoBundle 'ncm2/ncm2-tern',{ 'build': 'npm install' }
+"NeoBundle 'ncm2/ncm2-tern',{ 'build': 'npm install' }
 
 """"""""" TYPESCRIPT
 "NeoBundle 'leafgarland/typescript-vim'
@@ -387,7 +390,7 @@ nmap <silent><Leader>' <Esc>:LeaderfRgInteractive<CR>
 "call deoplete#custom#source('_',  'max_kind_width', 0)
 
 " NCM2
-autocmd BufEnter * call ncm2#enable_for_buffer()
+"autocmd BufEnter * call ncm2#enable_for_buffer()
 
 " NEOSNIPPET
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -446,6 +449,24 @@ nmap <silent><Leader>u <Esc>:MundoToggle<CR>
 " VIM COMMANDER
 "noremap <silent><F11> :cal VimCommanderToggle()<CR>
 
+" COC
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
 
 " }}}
 
@@ -462,6 +483,8 @@ set t_Co=256
 set history=1000
 set fileformat=unix
 set laststatus=2
+set cmdheight=2
+"set signcolumn=yes
 set hidden
 set nu
 set rnu
