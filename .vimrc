@@ -1,32 +1,26 @@
 " PLUGINS & SETTING ----------------------------------------------------------
 " {{{
 
-" Note: Skip initialization for vim-tiny or vim-small.
-if 0 | endif
-
-if &compatible
-    set nocompatible               " Be iMproved
+" Base path for VIM/NVIM
+if has('nvim')
+  let vim_base_path = stdpath('config')
+else
+  let vim_base_path = '~/.vim'
 endif
 
-" Required:
-set runtimepath+=~/.vim/bundle/neobundle.vim/
-
-" Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
-
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-" Set platform specific make command
-let g:make = 'gmake'
-if system('uname -o') =~ '^GNU/'
-    let g:make = 'make'
+" Install vim-plug if missing
+let plug_install = 0
+let autoload_plug_path = vim_base_path . '/autoload/plug.vim'
+if empty(glob(autoload_plug_path))
+    silent exe '!curl -fL --create-dirs -o ' . autoload_plug_path .
+        \ ' https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+    execute 'source ' . fnameescape(autoload_plug_path)
+    let plug_install = 1
 endif
+unlet autoload_plug_path
 
-" My Bundles here:
-" Refer to |:NeoBundle-examples|.
-" Note: You don't set neobundle setting in .gvimrc!
+" Plugins
+call plug#begin(vim_base_path . '/plugged')
 
 """"""""" NETRW - settings
 let g:netrw_banner=0
@@ -43,57 +37,53 @@ let g:netrw_silent=1
 "set autochdir
 
 """"""""" EDITORCONFIG
-NeoBundle 'editorconfig/editorconfig-vim'
+Plug 'editorconfig/editorconfig-vim'
 
 """"""""" COLORS
-"NeoBundle 'vim-scripts/tir_black'
-NeoBundle 'tomasr/molokai'
-"NeoBundle 'zenorocha/dracula-theme'
-"NeoBundle 'vim-scripts/northland.vim'
-"NeoBundle 'Colour_Sampler_Pack'
-"NeoBundle 'flazz/vim-colorschemes'
-"NeoBundle 'vim-scripts/ScrollColors'
-"NeoBundle 'vim-colors-solarized'
-NeoBundle 'NLKNguyen/papercolor-theme'
+"Plug 'vim-scripts/tir_black'
+Plug 'tomasr/molokai'
+"Plug 'zenorocha/dracula-theme'
+"Plug 'vim-scripts/northland.vim'
+"Plug 'Colour_Sampler_Pack'
+"Plug 'flazz/vim-colorschemes'
+"Plug 'vim-scripts/ScrollColors'
+"Plug 'vim-colors-solarized'
+Plug 'NLKNguyen/papercolor-theme'
 
 """"""""" SYNTAX HIGHLIGHTING
-NeoBundle 'sheerun/vim-polyglot'
-"NeoBundle 'chr4/nginx.vim'
-"NeoBundle 'gabrielelana/vim-markdown'
-"NeoBundle 'elzr/vim-json'
-"NeoBundle 'elubow/cql-vim'
-"let g:markdown_enable_spell_checking = 0
+Plug 'sheerun/vim-polyglot'
+"Plug 'elubow/cql-vim'
 
 """"""""" CSS3, LESS
-"NeoBundle 'hail2u/vim-css3-syntax'
-"NeoBundle 'lepture/vim-css'
-"NeoBundle 'skammer/vim-css-color'
+"Plug 'hail2u/vim-css3-syntax'
+"Plug 'lepture/vim-css'
+"Plug 'skammer/vim-css-color'
 " use new Colorizer
-"NeoBundle 'chrisbra/Colorizer'
-"NeoBundle 'groenewege/vim-less'
-"NeoBundle 'vitalk/vim-lesscss'
+"Plug 'chrisbra/Colorizer'
+"Plug 'groenewege/vim-less'
+"Plug 'vitalk/vim-lesscss'
 
 """"""""" SASS, COMPASS, HAML
-NeoBundle 'tpope/vim-haml'
+Plug 'tpope/vim-haml'
 
 """"""""" FOLDING
-NeoBundle 'Konfekt/FastFold'
-"NeoBundle 'pseewald/vim-anyfold'
+Plug 'Konfekt/FastFold'
+"Plug 'pseewald/vim-anyfold'
 "let anyfold_activate=1
 "let anyfold_fold_display = 1
 "let anyfold_identify_comments = 1
 "let anyfold_fold_comments = 1
 
 """"""""" BBYE
-NeoBundle 'moll/vim-bbye'
+Plug 'moll/vim-bbye'
 
 """"""""" LINE WRAP
-"NeoBundle 'bronson/vim-toggle-wrap'
+"Plug 'bronson/vim-toggle-wrap'
 
 
 """"""""" NERDTREE
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'vim-scripts/Toggle-NERDTree-width'
+Plug 'scrooloose/nerdtree'
+Plug 'vim-scripts/Toggle-NERDTree-width'
 let g:NERDTreeWinSize=40
 let g:NERDTreeShowBookmarks=1
 "let g:NERDTreeIgnore = ['\.pyc$']
@@ -102,18 +92,21 @@ let g:NERDTreeDirArrows = 0
 "autocmd VimEnter * NERDTree
 
 """"""""" NERDCOMMENTER
-NeoBundle 'scrooloose/nerdcommenter'
+"Plug 'scrooloose/nerdcommenter'
+
+""""""""" TCOMMENT
+Plug 'tomtom/tcomment_vim'
 
 """"""""" TAGBAR
-NeoBundle 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
 let g:tagbar_width = 40
 let g:tagbar_left = 0
 let g:tagbar_sort = 0
 
 """"""""" AIRLINE, POWERLINE FONTS
-NeoBundle 'vim-airline/vim-airline'
-NeoBundle 'vim-airline/vim-airline-themes'
-NeoBundle 'Lokaltog/powerline-fonts'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'Lokaltog/powerline-fonts'
 "let g:airline_powerline_fonts = 1
 "let g:airline_theme = 'powerlineish'
 let g:airline_theme = 'light'
@@ -129,60 +122,60 @@ let g:airline#extensions#tabline#buffer_idx_mode = 1
 "let g:airline_section_z =
 
 """"""""" AUTO-PAIRS, MATCHIT, MATCHTAG
-NeoBundle 'jiangmiao/auto-pairs'
-NeoBundle 'vim-scripts/matchit.zip'
-NeoBundle 'gregsexton/MatchTag'
+Plug 'jiangmiao/auto-pairs'
+Plug 'vim-scripts/matchit.zip'
+Plug 'gregsexton/MatchTag'
 
 """"""""" EASYMOTION
-NeoBundle 'Lokaltog/vim-easymotion'
+Plug 'Lokaltog/vim-easymotion'
 
 """"""""" VIM8 compatibility layer
-NeoBundle 'roxma/nvim-yarp'
-NeoBundle 'roxma/vim-hug-neovim-rpc'
+"Plug 'roxma/nvim-yarp'
+"Plug 'roxma/vim-hug-neovim-rpc'
 
 """"""""" SHELL
-"NeoBundle 'Shougo/vimshell.vim'
-"NeoBundle 'oplatek/Conque-Shell'
-"NeoBundle 'wkentaro/conque.vim'
+"Plug 'Shougo/vimshell.vim'
+"Plug 'oplatek/Conque-Shell'
+"Plug 'wkentaro/conque.vim'
 
 """"""""" CTRLP, LEADERF
-"NeoBundle 'ctrlpvim/ctrlp.vim'
-"NeoBundle 'FelikZ/ctrlp-py-matcher'
+"Plug 'ctrlpvim/ctrlp.vim'
+"Plug 'FelikZ/ctrlp-py-matcher'
 "let g:ctrlp_map = '<c-p>'
 "let g:ctrlp_cmd = 'CtrlP'
 "let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 "let g:ctrlp_match_window = 'top,order:ttb,min:120,max:120,results:120'
-NeoBundle 'Yggdroot/LeaderF'
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 
 """"""""" NCM2
-"NeoBundle 'ncm2/ncm2'
-"NeoBundle 'ncm2/ncm2-bufword'
-"NeoBundle 'ncm2/ncm2-path'
-"NeoBundle 'ncm2/ncm2-vim'
-"NeoBundle 'ncm2/ncm2-cssomni'
+"Plug 'ncm2/ncm2'
+"Plug 'ncm2/ncm2-bufword'
+"Plug 'ncm2/ncm2-path'
+"Plug 'ncm2/ncm2-vim'
+"Plug 'ncm2/ncm2-cssomni'
 
 """"""""" COC
-NeoBundle 'neoclide/coc.nvim', 'release', { 'build': { 'others': 'git checkout release' } }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 """"""""" LANGUAGE SERVER (CLIENT)
-"NeoBundle 'autozimu/LanguageClient-neovim', { 'rev' : 'next',  'build': 'bash install.sh' }
+"Plug 'autozimu/LanguageClient-neovim', { 'rev' : 'next',  'build': 'bash install.sh' }
 
 """"""""" ULTISNIP, EMMET
-"NeoBundle 'SirVer/ultisnips'
-"NeoBundle 'ncm2/ncm2-ultisnips'
-"NeoBundle 'honza/vim-snippets'
-"NeoBundle 'mattn/emmet-vim'
-"NeoBundle 'rstacruz/sparkup'
+"Plug 'SirVer/ultisnips'
+"Plug 'ncm2/ncm2-ultisnips'
+Plug 'honza/vim-snippets'
+"Plug 'mattn/emmet-vim'
+"Plug 'rstacruz/sparkup'
 
 """"""""" SYNTASTIC, ALE (Asynchronous Lint Engine)
-"NeoBundle 'scrooloose/syntastic'
+"Plug 'scrooloose/syntastic'
 "let g:syntastic_disabled_filetypes=['html']
 "let g:syntastic_enable_signs=1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 let g:syntastic_auto_jump = 1
 let g:syntastic_auto_loc_list = 0
-"NeoBundle 'w0rp/ale'
+"Plug 'w0rp/ale'
 "let g:ale_completion_enabled = 1
 "let g:ale_set_balloons = 1
 let g:syntastic_go_checkers=['go', 'golint', 'govet', 'errcheck']
@@ -196,38 +189,38 @@ let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
 let g:syntastic_javascript_checkers=['eslint', 'jshint']
 
 """"""""" DIRDIFF
-NeoBundle 'vim-scripts/DirDiff.vim'
+Plug 'vim-scripts/DirDiff.vim'
 
 """"""""" GIT - FUGITIVE, MERGINAL, GITGUTTER
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'idanarye/vim-merginal'
-NeoBundle 'airblade/vim-gitgutter'
-"NeoBundle 'gregsexton/gitv'
-"NeoBundle 'neoclide/denite-git'
+Plug 'tpope/vim-fugitive'
+Plug 'idanarye/vim-merginal'
+Plug 'airblade/vim-gitgutter'
+"Plug 'gregsexton/gitv'
+"Plug 'neoclide/denite-git'
 
 """"""""" XML
-NeoBundle 'sukima/xmledit'
+Plug 'sukima/xmledit'
 let g:xml_syntax_folding=1
 
 """"""""" MUNDO - undo tree
-NeoBundle 'simnalamburt/vim-mundo'
+Plug 'simnalamburt/vim-mundo'
 let g:mundo_right = 1
 let g:mundo_width = 40
 let g:mundo_preview_height = 20
 
 """"""""" VIM-EXTRAS
-NeoBundle 'jan-capek/vim-extras'
+Plug 'jan-capek/vim-extras'
 
 """"""""" ETC
-"NeoBundle 'severin-lemaignan/vim-minimap'
-"NeoBundle 'mbbill/VimExplorer'
-"NeoBundle 'vim-scripts/vimcommander'
-"NeoBundle 'vimoutliner/vimoutliner'
-"NeoBundle 'calendar%52'
-"NeoBundle 'cosminadrianpopescu/vim-sql-workbench'
+"Plug 'severin-lemaignan/vim-minimap'
+"Plug 'mbbill/VimExplorer'
+"Plug 'vim-scripts/vimcommander'
+"Plug 'vimoutliner/vimoutliner'
+"Plug 'calendar%52'
+"Plug 'cosminadrianpopescu/vim-sql-workbench'
 
 """"""""" VDEBUG
-"NeoBundle 'joonty/vdebug'
+"Plug 'joonty/vdebug'
 let g:vdebug_options = {}
 let g:vdebug_options['server'] = "localhost"
 let g:vdebug_options['port'] = 9999
@@ -245,56 +238,53 @@ let g:vdebug_features['max_children'] = 2048
 " https://www.youtube.com/watch?v=5mtY5HQeVaw
 
 """"""""" GOLANG
-"NeoBundle 'fatih/vim-go'
-"NeoBundle 'ncm2/ncm2-go'
-"NeoBundle 'zchee/deoplete-go', { 'build': 'make' }
-"NeoBundle 'garyburd/go-explorer'
+"Plug 'fatih/vim-go'
+"Plug 'ncm2/ncm2-go'
+"Plug 'zchee/deoplete-go', { 'build': 'make' }
+"Plug 'garyburd/go-explorer'
 
 """"""""" PYTHON
-"NeoBundle 'davidhalter/jedi-vim'
-"NeoBundle 'zchee/deoplete-jedi'
-"NeoBundle 'ncm2/ncm2-jedi'
-NeoBundle 'jmcantrell/vim-virtualenv'
-"NeoBundle 'Glench/Vim-Jinja2-Syntax'
-"NeoBundle 'lepture/vim-jinja'
-"NeoBundle 'ivanov/vim-ipython'
-"NeoBundle 'clericJ/pyinteractive-vim'
-"NeoBundle 'tmhedberg/SimpylFold'
+"Plug 'davidhalter/jedi-vim'
+"Plug 'zchee/deoplete-jedi'
+"Plug 'ncm2/ncm2-jedi'
+Plug 'jmcantrell/vim-virtualenv'
+"Plug 'Glench/Vim-Jinja2-Syntax'
+"Plug 'lepture/vim-jinja'
+"Plug 'ivanov/vim-ipython'
+"Plug 'clericJ/pyinteractive-vim'
+"Plug 'tmhedberg/SimpylFold'
 
 """"""""" PHP
-"NeoBundle 'phpactor/phpactor',{ 'build': 'composer install' }
-"NeoBundle 'phpactor/ncm2-phpactor'
-"NeoBundle 'lvht/phpcd.vim', { 'build': 'composer install' }
-"NeoBundle 'roxma/LanguageServer-php-neovim', { 'build': 'composer install && composer run-script parse-stubs' }
-NeoBundle 'swekaj/php-foldexpr.vim'
-"NeoBundle 'rayburgemeestre/phpfolding.vim'
+"Plug 'phpactor/phpactor',{ 'build': 'composer install' }
+"Plug 'phpactor/ncm2-phpactor'
+"Plug 'lvht/phpcd.vim', { 'build': 'composer install' }
+"Plug 'roxma/LanguageServer-php-neovim', { 'build': 'composer install && composer run-script parse-stubs' }
+Plug 'swekaj/php-foldexpr.vim'
+"Plug 'rayburgemeestre/phpfolding.vim'
 
 """"""""" JAVASCRIPT / JSX
-"NeoBundle 'pangloss/vim-javascript'
-"NeoBundle 'isRuslan/vim-es6'
-NeoBundle 'mxw/vim-jsx'
+"Plug 'pangloss/vim-javascript'
+"Plug 'isRuslan/vim-es6'
+Plug 'mxw/vim-jsx'
 let g:jsx_ext_required = 1 " Allow JSX in normal JS files
-"NeoBundle 'ternjs/tern_for_vim', { 'build': 'npm install' }
-"NeoBundle 'carlitux/deoplete-ternjs', { 'build': 'npm install -g tern' }
-"NeoBundle 'wokalski/autocomplete-flow'
-"NeoBundle 'steelsojka/deoplete-flow'
-"NeoBundle 'carlitux/deoplete-flow'
-"NeoBundle 'ncm2/ncm2-tern',{ 'build': 'npm install' }
+"Plug 'ternjs/tern_for_vim', { 'build': 'npm install' }
+"Plug 'carlitux/deoplete-ternjs', { 'build': 'npm install -g tern' }
+"Plug 'wokalski/autocomplete-flow'
+"Plug 'steelsojka/deoplete-flow'
+"Plug 'carlitux/deoplete-flow'
+"Plug 'ncm2/ncm2-tern',{ 'build': 'npm install' }
 
 """"""""" TYPESCRIPT
-"NeoBundle 'leafgarland/typescript-vim'
-"NeoBundle 'Quramy/tsuquyomi'
+"Plug 'leafgarland/typescript-vim'
+"Plug 'Quramy/tsuquyomi'
 
 
-call neobundle#end()
-
-" Required:
-filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
-
+call plug#end()
+if plug_install
+    PlugInstall --sync
+endif
+unlet plug_install
+unlet vim_base_path
 
 
 " }}}
@@ -393,9 +383,9 @@ nmap <silent><Leader>' <Esc>:LeaderfRgInteractive<CR>
 "autocmd BufEnter * call ncm2#enable_for_buffer()
 
 " NEOSNIPPET
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
+"imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 
 " NERDTree & NetRw
@@ -467,13 +457,18 @@ function! s:show_documentation()
   endif
 endfunction
 
+imap <C-l> <Plug>(coc-snippets-expand)
+vmap <C-j> <Plug>(coc-snippets-select)
+let g:coc_snippet_next = '<c-j>'
+let g:coc_snippet_prev = '<c-k>'
+imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 " }}}
 
 " GENERAL SETTING -----------------------------------------------------------
 " {{{
 
-set nocompatible
+"set nocompatible
 "set background=dark
 set background=light
 set encoding=utf-8
@@ -481,7 +476,6 @@ set termencoding=utf-8
 set t_Co=256
 "set term=xterm-256color
 set history=1000
-set fileformat=unix
 set laststatus=2
 set cmdheight=2
 "set signcolumn=yes
@@ -559,10 +553,10 @@ set smartcase
 "set title
 
 " Syntax
-syntax   on
-filetype on
-filetype plugin on
-filetype indent on
+"syntax   on
+"filetype on
+"filetype plugin on
+"filetype indent on
 
 " OmniComplete
 "autocmd FileType python         setlocal omnifunc=jedi#completions
@@ -693,4 +687,6 @@ endif
 "hi Folded term=NONE cterm=NONE ctermbg=NONE
 
 
+
+   "snippets.textmateSnippetsRoots": ["/home/hans/.config/nvim/plugged/vim-snippets/snippets"],
 
