@@ -54,18 +54,6 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'sheerun/vim-polyglot'
 "Plug 'elubow/cql-vim'
 
-""""""""" CSS3, LESS
-"Plug 'hail2u/vim-css3-syntax'
-"Plug 'lepture/vim-css'
-"Plug 'skammer/vim-css-color'
-" use new Colorizer
-"Plug 'chrisbra/Colorizer'
-"Plug 'groenewege/vim-less'
-"Plug 'vitalk/vim-lesscss'
-
-""""""""" SASS, COMPASS, HAML
-Plug 'tpope/vim-haml'
-
 """"""""" FOLDING
 Plug 'Konfekt/FastFold'
 "Plug 'pseewald/vim-anyfold'
@@ -74,7 +62,7 @@ Plug 'Konfekt/FastFold'
 "let anyfold_identify_comments = 1
 "let anyfold_fold_comments = 1
 
-""""""""" BBYE
+""""""""" BBYE (buffer)
 Plug 'moll/vim-bbye'
 
 """"""""" LINE WRAP
@@ -90,9 +78,6 @@ let g:NERDTreeShowBookmarks=1
 let g:NERDTreeDirArrows = 0
 "let NERDTreeQuitOnOpen = 1
 "autocmd VimEnter * NERDTree
-
-""""""""" NERDCOMMENTER
-"Plug 'scrooloose/nerdcommenter'
 
 """"""""" TCOMMENT
 Plug 'tomtom/tcomment_vim'
@@ -138,21 +123,8 @@ Plug 'Lokaltog/vim-easymotion'
 "Plug 'oplatek/Conque-Shell'
 "Plug 'wkentaro/conque.vim'
 
-""""""""" CTRLP, LEADERF
-"Plug 'ctrlpvim/ctrlp.vim'
-"Plug 'FelikZ/ctrlp-py-matcher'
-"let g:ctrlp_map = '<c-p>'
-"let g:ctrlp_cmd = 'CtrlP'
-"let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-"let g:ctrlp_match_window = 'top,order:ttb,min:120,max:120,results:120'
+""""""""" LEADERF
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
-
-""""""""" NCM2
-"Plug 'ncm2/ncm2'
-"Plug 'ncm2/ncm2-bufword'
-"Plug 'ncm2/ncm2-path'
-"Plug 'ncm2/ncm2-vim'
-"Plug 'ncm2/ncm2-cssomni'
 
 """"""""" COC
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -162,31 +134,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 """"""""" ULTISNIP, EMMET
 "Plug 'SirVer/ultisnips'
-"Plug 'ncm2/ncm2-ultisnips'
 Plug 'honza/vim-snippets'
 "Plug 'mattn/emmet-vim'
 "Plug 'rstacruz/sparkup'
-
-""""""""" SYNTASTIC, ALE (Asynchronous Lint Engine)
-"Plug 'scrooloose/syntastic'
-"let g:syntastic_disabled_filetypes=['html']
-"let g:syntastic_enable_signs=1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-let g:syntastic_auto_jump = 1
-let g:syntastic_auto_loc_list = 0
-"Plug 'w0rp/ale'
-"let g:ale_completion_enabled = 1
-"let g:ale_set_balloons = 1
-let g:syntastic_go_checkers=['go', 'golint', 'govet', 'errcheck']
-let g:syntastic_python_checkers=['flake8']
-let g:syntastic_python_python_exec = 'python3'
-let g:syntastic_python_pylint_exec = 'pylint'
-"let g:syntastic_python_pylint_post_args='--disable=C0301,C0302,C0111,C0103,R0913,R0914,E301,E302'
-let g:syntastic_python_flake8_exec = 'flake8'
-let g:syntastic_python_flake8_post_args='--ignore=E301,E302,E303,E305,E501'
-let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
-let g:syntastic_javascript_checkers=['eslint', 'jshint']
 
 """"""""" DIRDIFF
 Plug 'vim-scripts/DirDiff.vim'
@@ -211,42 +161,7 @@ let g:mundo_preview_height = 20
 """"""""" VIM-EXTRAS
 Plug 'jan-capek/vim-extras'
 
-""""""""" ETC
-"Plug 'severin-lemaignan/vim-minimap'
-"Plug 'mbbill/VimExplorer'
-"Plug 'vim-scripts/vimcommander'
-"Plug 'vimoutliner/vimoutliner'
-"Plug 'calendar%52'
-"Plug 'cosminadrianpopescu/vim-sql-workbench'
-
-""""""""" VDEBUG
-"Plug 'joonty/vdebug'
-let g:vdebug_options = {}
-let g:vdebug_options['server'] = "localhost"
-let g:vdebug_options['port'] = 9999
-let g:vdebug_options["ide_key"] = "VDEBUG"
-let g:vdebug_options["break_on_open"] = 0
-"let g:vdebug_options['timeout'] = 60
-let g:vdebug_options["watch_window_style"] = "compact"
-let g:vdebug_options["debug_window_level"] = 2
-"let g:vdebug_options["continuous_mode"] = 1
-"let g:vdebug_options['path_maps'] = { "/home/mmdelivery/www": "/Users/hans/Remotes/ran-mmdelivery/www" }
-
-let g:vdebug_features = {}
-let g:vdebug_features['max_depth'] = 2048
-let g:vdebug_features['max_children'] = 2048
-" https://www.youtube.com/watch?v=5mtY5HQeVaw
-
-""""""""" GOLANG
-"Plug 'fatih/vim-go'
-"Plug 'ncm2/ncm2-go'
-"Plug 'zchee/deoplete-go', { 'build': 'make' }
-"Plug 'garyburd/go-explorer'
-
 """"""""" PYTHON
-"Plug 'davidhalter/jedi-vim'
-"Plug 'zchee/deoplete-jedi'
-"Plug 'ncm2/ncm2-jedi'
 Plug 'jmcantrell/vim-virtualenv'
 "Plug 'Glench/Vim-Jinja2-Syntax'
 "Plug 'lepture/vim-jinja'
@@ -255,9 +170,6 @@ Plug 'jmcantrell/vim-virtualenv'
 "Plug 'tmhedberg/SimpylFold'
 
 """"""""" PHP
-"Plug 'phpactor/phpactor',{ 'build': 'composer install' }
-"Plug 'phpactor/ncm2-phpactor'
-"Plug 'lvht/phpcd.vim', { 'build': 'composer install' }
 "Plug 'roxma/LanguageServer-php-neovim', { 'build': 'composer install && composer run-script parse-stubs' }
 Plug 'swekaj/php-foldexpr.vim'
 "Plug 'rayburgemeestre/phpfolding.vim'
@@ -274,9 +186,13 @@ let g:jsx_ext_required = 1 " Allow JSX in normal JS files
 "Plug 'carlitux/deoplete-flow'
 "Plug 'ncm2/ncm2-tern',{ 'build': 'npm install' }
 
-""""""""" TYPESCRIPT
-"Plug 'leafgarland/typescript-vim'
-"Plug 'Quramy/tsuquyomi'
+""""""""" ETC
+"Plug 'severin-lemaignan/vim-minimap'
+"Plug 'mbbill/VimExplorer'
+"Plug 'vim-scripts/vimcommander'
+"Plug 'vimoutliner/vimoutliner'
+"Plug 'calendar%52'
+"Plug 'cosminadrianpopescu/vim-sql-workbench'
 
 
 call plug#end()
@@ -334,11 +250,6 @@ nmap <silent><leader>9 <Plug>AirlineSelectTab9
 " EASYMOTION
 map <silent><Space> <Plug>(easymotion-s)
 
-" insert new line (won't work - remove)
-"imap <S-CR> <Esc>O
-"nmap <S-CR> O<Esc>
-"nmap <CR> o<Esc>
-
 " window switching
 nmap <Tab> <C-W>w
 
@@ -353,67 +264,12 @@ nmap <silent><Leader>- :diffoff!<CR>
 " pretty xml
 nmap <silent><Leader>x :PrettyXML<CR>
 
-" MARKDOWN
-"let g:vim_markdown_folding_disabled=1
-"let g:vim_markdown_initial_foldlevel=1
-"autocmd BufRead,BufNewFile *.md setlocal wrap linebreak
-"autocmd FileType markdown setlocal wrap linebreak
-
-" DENITE
-"call denite#custom#map('insert', '<Down>', '<denite:move_to_next_line>', 'noremap')
-"call denite#custom#map('insert', '<Up>', '<denite:move_to_previous_line>', 'noremap')
-"call denite#custom#source('file_mru', 'matchers', ['matcher/substring'])
-"call denite#custom#source('file/rec', 'matchers', ['matcher/substring'])
-"nnoremap <silent><leader>; :<C-u>Denite -split=no file_mru<cr>
-"nnoremap <silent><leader>/ :<C-u>Denite -split=no file/rec<cr>
-
-" DENITE
-"nmap <silent><Leader>r <Esc>:CtrlPMRUFiles<CR>
-
 " LEADERF
 nmap <silent><Leader>r <Esc>:LeaderfMru<CR>
 nmap <silent><Leader>' <Esc>:LeaderfRgInteractive<CR>
 
-" DEOPLETE
-"call deoplete#custom#source('_',  'max_menu_width', 0)
-"call deoplete#custom#source('_',  'max_abbr_width', 0)
-"call deoplete#custom#source('_',  'max_kind_width', 0)
-
-" NCM2
-"autocmd BufEnter * call ncm2#enable_for_buffer()
-
-" NEOSNIPPET
-"imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-"smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-"xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-
 " NERDTree & NetRw
 nmap <silent><Leader><TAB> :NERDTreeToggle<CR>
-
-" DEFX
-nmap <silent><Leader>e :Defx<CR>
-autocmd FileType defx call s:defx_my_settings()
-function! s:defx_my_settings() abort
-    " Define mappings
-    nnoremap <silent><buffer><expr> <CR>    defx#do_action('open')
-    nnoremap <silent><buffer><expr> l       defx#do_action('open')
-    nnoremap <silent><buffer><expr> E       defx#do_action('open', 'vsplit')
-    nnoremap <silent><buffer><expr> P       defx#do_action('open', 'pedit')
-    nnoremap <silent><buffer><expr> K       defx#do_action('new_directory')
-    nnoremap <silent><buffer><expr> N       defx#do_action('new_file')
-    nnoremap <silent><buffer><expr> d       defx#do_action('remove')
-    nnoremap <silent><buffer><expr> r       defx#do_action('rename')
-    nnoremap <silent><buffer><expr> h       defx#do_action('cd', ['..'])
-    nnoremap <silent><buffer><expr> ~       defx#do_action('cd')
-    nnoremap <silent><buffer><expr> q       defx#do_action('quit')
-    nnoremap <silent><buffer><expr> <Space> defx#do_action('toggle_select') . 'j'
-    nnoremap <silent><buffer><expr> *       defx#do_action('toggle_select_all')
-    nnoremap <silent><buffer><expr> j       line('.') == line('$') ? 'gg' : 'j'
-    nnoremap <silent><buffer><expr> k       line('.') == 1 ? 'G' : 'k'
-    nnoremap <silent><buffer><expr> <C-l>   defx#do_action('redraw')
-    nnoremap <silent><buffer><expr> <C-g>   defx#do_action('print')
-endfunction
 
 " FUGITIVE GIT
 nmap <silent><Leader>s :Gstatus<CR>
@@ -440,8 +296,6 @@ nmap <silent><Leader>u <Esc>:MundoToggle<CR>
 "noremap <silent><F11> :cal VimCommanderToggle()<CR>
 
 " COC
-
-" Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -500,9 +354,6 @@ colorscheme PaperColor
 " Tabs
 set showtabline=1
 set switchbuf=usetab,newtab
-"au BufAdd,BufNewFile * nested tab sball
-"au BufAdd,BufNewFile,BufRead * nested tab sball
-"set tabline+=t
 
 " Windows splits
 set splitright
@@ -550,26 +401,10 @@ set nohlsearch
 set incsearch
 set ignorecase
 set smartcase
-"set title
-
-" Syntax
-"syntax   on
-"filetype on
-"filetype plugin on
-"filetype indent on
 
 " OmniComplete
-"autocmd FileType python         setlocal omnifunc=jedi#completions
-"autocmd FileType javascript     setlocal omnifunc=javascriptcomplete#CompleteJS
-"autocmd FileType javascript     setlocal omnifunc=tern#Complete
-autocmd FileType html,markdown  setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css            setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType xml            setlocal omnifunc=xmlcomplete#CompleteTags
-"autocmd FileType php            setlocal omnifunc=phpcomplete#CompletePHP
-"autocmd FileType php            setlocal omnifunc=phpcomplete_extended#CompletePHP
-autocmd FileType ruby           setlocal omnifunc=rubycomplete#CompleteRuby
-set completeopt=longest,menuone
-set completeopt=noinsert,menuone,noselect
+" set completeopt=longest,menuone
+" set completeopt=noinsert,menuone,noselect
 
 " Folding
 set nofoldenable
