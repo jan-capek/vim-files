@@ -64,6 +64,12 @@ Plug 'Konfekt/FastFold'
 
 """"""""" BBYE (buffer)
 Plug 'moll/vim-bbye'
+Plug 'rbgrouleff/bclose.vim'
+
+""""""""" RANGER
+" Plug 'francoiscabrol/ranger.vim'
+" let g:ranger_map_keys = 0
+" map <leader>m :Ranger<CR>
 
 """"""""" LINE WRAP
 "Plug 'bronson/vim-toggle-wrap'
@@ -188,8 +194,9 @@ let g:jsx_ext_required = 1 " Allow JSX in normal JS files
 
 """"""""" ETC
 "Plug 'severin-lemaignan/vim-minimap'
-"Plug 'mbbill/VimExplorer'
-"Plug 'vim-scripts/vimcommander'
+" Plug 'mbbill/VimExplorer'
+" Plug 'lpenz/vimcommander'
+" Plug 'vifm/vifm.vim'
 "Plug 'vimoutliner/vimoutliner'
 "Plug 'calendar%52'
 "Plug 'cosminadrianpopescu/vim-sql-workbench'
@@ -324,6 +331,7 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 "set nocompatible
 "set background=dark
+set signcolumn=yes
 set background=light
 set encoding=utf-8
 set termencoding=utf-8
@@ -404,7 +412,7 @@ set smartcase
 
 " OmniComplete
 " set completeopt=longest,menuone
-" set completeopt=noinsert,menuone,noselect
+set completeopt=menuone,preview,noinsert,noselect
 
 " Folding
 set nofoldenable
