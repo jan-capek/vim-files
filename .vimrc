@@ -66,14 +66,8 @@ Plug 'Konfekt/FastFold'
 Plug 'moll/vim-bbye'
 Plug 'rbgrouleff/bclose.vim'
 
-""""""""" RANGER
-" Plug 'francoiscabrol/ranger.vim'
-" let g:ranger_map_keys = 0
-" map <leader>m :Ranger<CR>
-
 """"""""" LINE WRAP
 "Plug 'bronson/vim-toggle-wrap'
-
 
 """"""""" NERDTREE
 Plug 'scrooloose/nerdtree'
@@ -111,11 +105,14 @@ let g:airline#extensions#tabline#buffer_idx_mode = 1
 "let g:airline#extensions#tabline#left_alt_sep = '|'
 "let g:airline#extensions#tabline#show_buffers = 0
 "let g:airline_section_z =
+let g:airline_powerline_fonts = 0
+
 
 """"""""" AUTO-PAIRS, MATCHIT, MATCHTAG
 Plug 'jiangmiao/auto-pairs'
-Plug 'vim-scripts/matchit.zip'
-Plug 'gregsexton/MatchTag'
+" Plug 'vim-scripts/matchit.zip'
+Plug 'andymass/vim-matchup'
+" Plug 'gregsexton/MatchTag'
 
 """"""""" EASYMOTION
 Plug 'Lokaltog/vim-easymotion'
@@ -131,6 +128,9 @@ Plug 'Lokaltog/vim-easymotion'
 
 """"""""" LEADERF
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+" let g:Lf_StlColorscheme = 'default'
+let g:Lf_StlColorscheme = 'gruvbox_material'
+let g:Lf_StlSeparator = { 'left': '', 'right': '' }
 
 """"""""" COC
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -196,7 +196,7 @@ let g:jsx_ext_required = 1 " Allow JSX in normal JS files
 "Plug 'severin-lemaignan/vim-minimap'
 " Plug 'mbbill/VimExplorer'
 " Plug 'lpenz/vimcommander'
-" Plug 'vifm/vifm.vim'
+Plug 'vifm/vifm.vim'
 "Plug 'vimoutliner/vimoutliner'
 "Plug 'calendar%52'
 "Plug 'cosminadrianpopescu/vim-sql-workbench'
@@ -462,6 +462,11 @@ autocmd BufRead,BufNewFile *.php,*.inc let b:phpfold_doc_with_funcs = 1
 "let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
 "let g:deoplete#ignore_sources.php = ['omni']
 
+" Terminal
+if has('nvim')
+    autocmd TermOpen * setlocal nonumber norelativenumber
+endif
+
 
 " }}}
 
@@ -475,49 +480,6 @@ elseif has("unix")
     set clipboard=unnamedplus
 endif
 
-" Fonts
-if has("gui_running")
-
-    if has("macunix")
-        set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h15
-        "set guifont=Inconsolata\ for\ Powerline:h14
-        "set guifont=Meslo\ LG\ S\ for\ Powerline:h14
-        "set guifont=Menlo\ Regular:h14
-        "set guifont=DejaVu\ Sans\ Mono:h14
-        "set guifont=Inconsolata:h14
-        "set guifont=Monaco:h14
-        "set guifont=monospace:h14
-    elseif has("unix")
-        set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 13.4
-        set lines=999 columns=999
-    endif
-
-    set guioptions=egmt
-    set guioptions-=T
-    set guioptions-=m
-    set guitablabel=\[%N\]\ %t\ %M
-    set showtabline=1
-    set helplang=en
-    set langmenu=none
-    set printexpr=system('open\ -a\ Preview\ '.v:fname_in)\ +\ v:shell_error
-    set listchars=tab:▸\ ,eol:¬,trail:·,extends:❯,precedes:❮
-    set showbreak=↪
-
-    " shift+arrows section mode
-    "let g:enable_mvim_shift_arrow = 1
-    "let macvim_hig_shift_movement = 1
-    "unlet macvim_hig_shift_movement
-    "behave mswin
-
-    let g:airline_powerline_fonts = 1
-    let g:NERDTreeDirArrows = 0
-
-else
-
-    let g:airline_powerline_fonts = 0
-    let g:NERDTreeDirArrows = 0
-
-endif
 
 
 
